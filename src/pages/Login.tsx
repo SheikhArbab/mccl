@@ -79,12 +79,12 @@ export default function Login() {
     });
 
     return (
-        <section className="fixed inset-0 z-[999999] bg-gray-100 overflow-x-hidden overflow-y-auto py-20">
+        <section className="fixed inset-0 z-[999999] bg-myGreen overflow-x-hidden overflow-y-auto py-20 flex items-center justify-center flex-col">
 
 
-            <h1 className='font-bold text-2xl md:text-4xl text-center capitalize mb-8'>welcome back!</h1>
+            <h1 className='font-bold text-2xl md:text-4xl text-center capitalize mb-8 text-white drop-shadow-lg'>welcome back!</h1>
 
-            <div className="relative bg-white mx-auto  shadow rounded-3xl p-10 max-w-[38rem]">
+            <div className="relative bg-white mx-auto rounded-3xl px-10 py-16 max-w-[38rem] md:w-[50rem] shadow-lg">
 
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                     <Link to={'/'} className="relative w-32 mx-auto h-32 block">
@@ -112,23 +112,13 @@ export default function Login() {
 
                     <button
                         disabled={isLoading}
-                        className={`py-2 px-4 bg-myYellow hover:bg-myYellow/70 focus:ring-myYellow focus:ring-offset-yellow-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold h-9 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ${isLoading && 'opacity-50 cursor-not-allowed'}`}
+                        className={`py-2 px-4 mt-2 bg-myYellow hover:bg-myYellow/70 focus:ring-myYellow focus:ring-offset-yellow-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold h-9 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ${isLoading && 'opacity-50 cursor-not-allowed'}`}
                         type="submit"
                     >
                         {isLoading ? <Spinner size='6' className='w-fit' /> : 'Login'}
                     </button>
 
 
-                    <div className="flex items-center justify-between mt-4">
-                        <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4" />
-                        <Link
-                            className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
-                            to="/sign-up"
-                        >
-                            or Sign Up
-                        </Link>
-                        <span className="w-1/5 border-b dark:border-gray-400 md:w-1/4" />
-                    </div>
                 </form>
             </div>
             <Toaster />

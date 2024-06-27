@@ -43,7 +43,7 @@ const Input:FC<Props> = (
                 {type === "password" && <button
                     type="button"
                     onClick={() => setIsHide(!isHide)}
-                    className="absolute top-1/2 right-4 -translate-y-1/2">{isHide ? <GrFormViewHide /> : <BiShow />}</button>}
+                    className="absolute top-1/2 right-4 -translate-y-1/2">{isHide ? <BiShow /> : <GrFormViewHide />}</button>}
 
             </div>
 

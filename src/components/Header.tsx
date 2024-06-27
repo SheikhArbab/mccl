@@ -10,7 +10,7 @@ const Header: FC = () => {
   const [dropDownValue, setDropDownValue] = useState<string>("en");
 
   return (
-    <header className="bg-black fixed inset-x-0">
+    <header className="bg-black fixed inset-x-0 z-20">
       <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-20 overflow-hidden md:overflow-visible">
 
 
@@ -46,7 +46,7 @@ const Header: FC = () => {
             ].map(v => <li key={v.title}>
               <NavLink
                 to={v.url}
-                className="block py-2 px-3 text-white  capitalize rounded  nav md:p-0  font-semibold"
+                className="block py-2 px-3 text-white duration-300 transition-all hover:text-myYellow  capitalize rounded  nav md:p-0  font-semibold"
                 aria-current="page"
               >
                 {v.title}
@@ -57,7 +57,7 @@ const Header: FC = () => {
             <ul className="md:hidden flex gap-2 items-center text-white text-sm ">
 
               <li className='relative'>
-                <button onClick={() => setDropDown(!dropDown)} className=' flex items-center gap-1 bg-gray-500/50 rounded-full px-4 py-3 font-semibold uppercase'>
+                <button onClick={() => setDropDown(!dropDown)} className=' flex items-center gap-1 bg-gray-500/50 rounded-full px-4 py-3 font-semibold uppercase '>
                   <MdOutlineLanguage size={20} /> {dropDownValue}
                   <FaAngleDown size={20} />
                 </button>
@@ -89,12 +89,13 @@ const Header: FC = () => {
         <ul className="hidden md:flex gap-2 items-center text-white text-sm ">
 
           <li className='relative'>
-            <button onClick={() => setDropDown(!dropDown)} className=' flex items-center gap-1 bg-gray-500/50 rounded-full px-4 py-3 font-semibold uppercase'>
+            <button onClick={() => setDropDown(!dropDown)}
+             className=' flex items-center gap-1 bg-gray-500/50 transition-all duration-300 hover:bg-gray-300 hover:text-gray-700 rounded-full px-4 py-3 font-semibold uppercase'>
               <MdOutlineLanguage size={20} /> {dropDownValue}
               <FaAngleDown size={20} />
             </button>
             {
-              dropDown && <ul className='absolute z-20 bg-white text-gray-900 shadow-md rounded-md top-12 right-0 uppercase px-3 py-2 font-semibold w-20 text-center'>
+              dropDown && <ul className='absolute z-20 bg-white text-gray-900 shadow-md rounded-md top-12 right-0 uppercase px-3 py-2 font-semibold w-20 text-center '>
                 {["en", "ar"].map(i => <li key={i} onClick={() => setDropDownValue(i)} className='mb-2 border-0 border-gray-300 border-b pb-2 cursor-pointer'>{i}</li>)}
               </ul>
             }
@@ -103,7 +104,7 @@ const Header: FC = () => {
           </li>
 
           <li>
-            <Link to={"/login"} className=' flex items-center gap-1 bg-gray-500/50 rounded-full px-4 py-3 font-semibold'>
+            <Link to={"/login"} className=' flex items-center gap-1 bg-gray-500/50 rounded-full px-4 py-3 font-semibold transition-all duration-300 hover:bg-gray-300 hover:text-gray-700' >
               <FaUser size={20} />
               Login in
             </Link>
@@ -113,7 +114,7 @@ const Header: FC = () => {
         </ul>
 
 
-<div>
+{/* <div>
 <label className="hamburger bg-red-200">
           <input type="checkbox" />
           <svg viewBox="0 0 32 32">
@@ -124,7 +125,7 @@ const Header: FC = () => {
             <path className="line" d="M7 16 27 16" />
           </svg>
         </label>
-</div>
+</div> */}
 
       </nav>
     </header>
