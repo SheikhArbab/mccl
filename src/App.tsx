@@ -1,6 +1,6 @@
 import { Routing } from "@/routes/index"; 
 // import { UserState } from "@/types/index";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { jwtDecode } from "jwt-decode";
 // import { useDispatch, useSelector } from "react-redux";
 // import { currentUser } from "./redux/features/authSlice"; 

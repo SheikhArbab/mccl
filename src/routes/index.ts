@@ -1,4 +1,4 @@
-import * as P from "@/pages/index"
+// import * as P from "@/pages/index"
 
 
 

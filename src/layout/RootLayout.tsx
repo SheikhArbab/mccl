@@ -8,7 +8,7 @@ interface Props {
 }
 
 
-const RootLayout = ({ isToken, setIsToken }: Props) => {
+const RootLayout = ({ isToken }: Props) => {
 
 
     return (

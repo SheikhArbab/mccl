@@ -1,4 +1,4 @@
-import { lazy } from "react";
+// import { lazy } from "react";
 // lazy imports start
 // export const LDashboard = lazy(() => import("@/pages/Dashboard"));  // example
 // lazy imports end
