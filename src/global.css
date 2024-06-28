@@ -82,7 +82,7 @@
 
 
 .glass {
-    background: #0f0a299c;
+    background: #7777779c;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
   }
@@ -122,6 +122,11 @@
 
 .nav.active{
   color: #efb600;
+}
+
+.sidebar.active{
+  background-color: white;
+  color: black;
 }
 
  

@@ -1,21 +1,25 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+
 export const authApi = createApi({
   reducerPath: 'userApi',
   tagTypes: ['users'],
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_backend + "api/auth/",
+    baseUrl: import.meta.env.VITE_backend + "api/",
     credentials: 'include',
     mode: 'cors',
     prepareHeaders: (headers) => {
+      if (localStorage.getItem("token")) {
+        headers.set('Authorization', `Bearer ${localStorage.getItem("token")}`);
+      }
       headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),
   endpoints: (builder) => ({
-    signIn: builder.mutation({
+    login: builder.mutation({
       query: (user) => ({
-        url: 'sign-in',
+        url: 'login/',
         method: 'POST',
         body: user,
       }),
@@ -27,31 +31,30 @@ export const authApi = createApi({
         body: user,
       }),
     }),
-    getUsers: builder.query({
-      query: ({ page, limit, search, role }) => ({
-        url: `admin/get-all?page=${page}&limit=${limit}&search=${search}&role=${role}`,
+    getUserProfile: builder.query({
+      query: () => ({
+        url: `user/profile`,
         method: 'GET',
       }),
     }),
-
     getUserById: builder.query({
-      query: (id) => {
-        return ({
-          url: `admin/get/${id}`,
-          method: 'GET'
-        })
-      },
+      query: (id) => ({
+        url: `admin/get/${id}`,
+        method: 'GET'
+      }),
     }),
-
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `users`,
+        method: 'GET'
+      }),
+    }),
     updateUser: builder.mutation({
-      query: ({ userId, updateData }) => {
-
-        return {
-          url: `account-update/${userId}`,
-          method: 'PUT',
-          body: updateData,
-        };
-      },
+      query: ({ userId, updateData }) => ({
+        url: `user/${userId}/`,
+        method: 'PATCH',
+        body: updateData,
+      }),
       invalidatesTags: ['users'],
     }),
     deleteUser: builder.mutation({
@@ -61,24 +64,15 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['users'],
     }),
-    googleUser: builder.mutation({
-      query: (googleUser) => ({
-        url: 'google',
-        method: 'POST',
-        body: googleUser,
-      }),
-    }),
   }),
 });
 
 export const {
-
   useSignUpMutation,
-  useSignInMutation,
+  useLoginMutation,
   useDeleteUserMutation,
-  useGetUsersQuery,
-  useGoogleUserMutation,
+  useGetUserProfileQuery,
   useUpdateUserMutation,
-  useGetUserByIdQuery
-
+  useGetUserByIdQuery,
+  useGetAllUsersQuery
 } = authApi;

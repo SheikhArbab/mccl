@@ -44,6 +44,12 @@ export const address: T.Form[] = [
 export const productForm: T.Form[] = [
     { label: 'title', type: 'text', name: 'title' },
     { label: 'brand', type: 'text', name: 'brand' },
-    { label: 'price', type: 'number', name: 'price' }, 
+    { label: 'price', type: 'number', name: 'price' },
     { label: 'discount', type: 'number', name: 'discount' },
+]
+
+
+export const profileForm: T.Form[] = [
+    { label: 'first name', type: 'text', name: 'firstName' },
+    { label: 'last name', type: 'text', name: 'lastName' },
 ]

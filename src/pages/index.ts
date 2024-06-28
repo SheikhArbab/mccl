@@ -11,3 +11,7 @@ export { default as Home } from "./Home";
 export { default as NotFound } from "./NotFound";
 export { default as Login } from "./Login"; 
 export { default as User } from "./User"; 
+export { default as PaymentVoucher } from "./PaymentVoucher"; 
+export { default as Dashboard } from "./Dashboard"; 
+export { default as Revenue } from "./Revenue"; 
+export { default as Profile } from "./Profile"; 

@@ -8,12 +8,7 @@ import { persistReducer } from 'redux-persist';
 // Combine reducers
 const rootReducer = combineReducers({
     auth: F.authReducer, 
-    [S.authApi.reducerPath]: S.authApi.reducer,
-    [S.categoryApi.reducerPath]: S.categoryApi.reducer,
-    [S.bannerApi.reducerPath]: S.bannerApi.reducer,
-    [S.addressApi.reducerPath]: S.addressApi.reducer,
-    [S.productApi.reducerPath]: S.productApi.reducer,
-    [S.colorApi.reducerPath]: S.colorApi.reducer
+    [S.authApi.reducerPath]: S.authApi.reducer, 
 });
 
 // Configure Redux persist
@@ -31,12 +26,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false })
             .concat(
-                S.authApi.middleware,
-                S.bannerApi.middleware,
-                S.categoryApi.middleware,
-                S.productApi.middleware,
-                S.colorApi.middleware,
-                S.addressApi.middleware
+                S.authApi.middleware, 
             ),
 });
 

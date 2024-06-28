@@ -7,9 +7,7 @@ const Admin = ({ role }: { role: string }) => {
     const { user } = useSelector((s: UserState) => s.auth)
 
 
-    return role.includes(user?.role || '') ? <main className="w-full min-h-screen pt-20">
-    <Outlet />
-</main> : <Navigate to="/" replace />
+    return role.includes(user?.role || '') ? <Outlet /> : <Navigate to="/" replace />
 }
 
 export default Admin

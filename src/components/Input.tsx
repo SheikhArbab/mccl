@@ -12,10 +12,11 @@ interface Props {
     values: any;
     disable?: boolean;
     className?: string;
+    label?: string;
 }
 
 const Input:FC<Props> = (
-    { type, name, handleChange, handleBlur, errors, touched, values, disable = false, className }
+    { type, name, handleChange, handleBlur, errors, touched, values, disable = false, className ,label}
 ) => {
 
 
@@ -26,7 +27,7 @@ const Input:FC<Props> = (
             <label
                 className="font-semibold text-sm text-gray-600 pb-1 block capitalize"
                 htmlFor={name}>
-                {name}
+                {label ? label : name}
             </label>
 
             <div className="relative">

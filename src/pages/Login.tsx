@@ -1,13 +1,14 @@
 import * as Yup from 'yup';
 import * as R from "@/redux/services/auth"
 import toast, { Toaster } from 'react-hot-toast';
-import { currentUser } from "@/redux/features/authSlice"
 import { Form } from "@/constants/forms"
 import { useFormik } from 'formik';
 import { Spinner, Input } from "@/components/index"
+import { jwtDecode } from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect } from 'react'; 
+import { currentUser } from '@/redux/features/authSlice';
 
 
 
@@ -23,9 +24,11 @@ export default function Login() {
 
     const navigate = useNavigate()
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const [loginUser, { isLoading }] = R.useSignInMutation()
+
+    const [loginUser, { isLoading }] = R.useLoginMutation()
+ 
 
 
     const { handleChange, handleSubmit, handleBlur, touched, errors, values, } = useFormik({
@@ -39,30 +42,47 @@ export default function Login() {
                 .email('Invalid email address')
                 .required('Email is required'),
             password: Yup.string()
-                .min(6, 'Password must be at least 6 characters')
+                .min(4, 'Password must be at least 4 characters')
                 .required('Password is required')
         }),
         onSubmit: async (formValues) => {
 
+
             try {
 
                 const res: any = await loginUser(formValues)
-                if (!res.data.success) {
+
+                if (!res.data.access) {
                     toast.error("Wrong credentials !")
                 }
 
-                if (res && res.data && res.data.success) {
 
 
 
-                    toast.success(res.data.message)
+                if (res && res.data && res.data.access) {
 
-                    const { token, rest } = res.data
+                    localStorage.setItem('token', res.data.access);
 
-                    dispatch(currentUser({ user: rest, token }))
+
+
+                    const data: any = jwtDecode(res.data.access)
+                    const { exp, iat, jti, token_type, ...user } = data
+
+                    dispatch(currentUser({ user, token: res.data.access }));
+
+
+
+                    toast.success("User Login Successfully")
+
+
                     setTimeout(() => {
-                        navigate('/')
+                        navigate('/payment-voucher')
                     }, 1000);
+
+
+
+
+
 
                 } else {
                     toast.error(res.error.data.message)

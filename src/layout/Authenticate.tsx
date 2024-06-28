@@ -4,11 +4,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const Authenticate = () => {
 
-    const { user } = useSelector((s: UserState) => s.auth)
+    const { token } = useSelector((s: UserState) => s.auth)
 
-    return user ? <main className="w-full min-h-screen pt-20">
-    <Outlet />
-</main> : <Navigate to="/" replace />
+    return token ? <Outlet /> : <Navigate to="/" replace />
 }
 
 export default Authenticate

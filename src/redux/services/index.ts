@@ -1,9 +1,4 @@
-import { authApi } from "./auth";
-import { bannerApi } from "./banner";
-import { categoryApi } from "./category";
-import { addressApi } from "./address";
-import { productApi } from "./products";
-import { colorApi } from "./color";
+import { authApi } from "./auth"; 
 
 
-export { authApi, bannerApi, categoryApi, addressApi, productApi,colorApi };
+export { authApi  };

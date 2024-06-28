@@ -1,4 +1,4 @@
-// import * as P from "@/pages/index"
+import * as P from "@/pages/index"
 
 
 
@@ -20,9 +20,21 @@ export const Admin = [
 
 
 export const Authenticate = [
-    // {
-    //     path: '/dashboard',
-    //     element: P.LDashboard
-    // },
+    {
+        path: '/revenue',
+        element: P.Revenue
+    },
+    {
+        path: '/payment-voucher',
+        element: P.PaymentVoucher
+    },
+    {
+        path: '/user',
+        element: P.User
+    },
+    {
+        path: '/profile',
+        element: P.Profile
+    },
 ]
 export { default as Routing } from "./Routing"

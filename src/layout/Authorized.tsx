@@ -7,9 +7,7 @@ const Authorized = ({ roles }: { roles: string[] }) => {
     const { user } = useSelector((s: UserState) => s.auth)
 
 
-    return roles.includes(user?.role || '') ? <main className="w-full min-h-screen pt-20">
-        <Outlet />
-    </main> : <Navigate to="/" replace />
+    return roles.includes(user?.role || '') ?  <Outlet /> : <Navigate to="/" replace />
 }
 
 export default Authorized
