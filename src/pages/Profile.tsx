@@ -38,6 +38,9 @@ const Profile: FC = () => {
 
                 const res:any = await updateUser({ userId: user?.user_id, updateData: formValues })
 
+                console.log();
+                
+
                 if(res && res.user){
                     toast.success("User Update Successfully")
                 }else{
