@@ -1,30 +1,37 @@
 import * as C from "@/components/index";
-import { Sidebar } from "@/components/index";
-import { Outlet } from "react-router-dom"
+import { FC ,useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 
-interface Props {
-    isToken: boolean;
-    setIsToken: Function;
-}
+
+const RootLayout:FC = () => {
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+
+    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <C.ScrollTop />
+
+      <div className="flex h-screen overflow-hidden">
+
+        <C.Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
 
-const RootLayout = ({ isToken }: Props) => {
+        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 
+          <C.Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-    return (
-        <>
-            <C.ScrollTop />
-            <C.Header />
-            <main className="w-full min-h-screen  flex">
-                <Sidebar/>
-                <Outlet />
-            </main> 
-            <C.Footer />
-            {isToken &&
-                alert("Your session has expired. Please log in again to continue using the app.")}
-        </>
-    )
-}
+          <main>
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+              <Outlet />
+            </div>
+          </main>
+          
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default RootLayout
+export default RootLayout;

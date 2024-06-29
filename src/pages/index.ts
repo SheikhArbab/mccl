@@ -1,17 +1,13 @@
-// import { lazy } from "react";
-// lazy imports start
-// export const LDashboard = lazy(() => import("@/pages/Dashboard"));  // example
-// lazy imports end
-
-
-
-
-export { default as Loading } from "./Loading";
-export { default as Home } from "./Home";
-export { default as NotFound } from "./NotFound";
-export { default as Login } from "./Login"; 
-export { default as User } from "./User"; 
-export { default as PaymentVoucher } from "./PaymentVoucher"; 
-export { default as Dashboard } from "./Dashboard"; 
-export { default as Revenue } from "./Revenue"; 
-export { default as Profile } from "./Profile"; 
+export { default as Profile } from "./Profile";
+export { default as Settings } from "./Settings";
+export { default as Tables } from "./Tables";
+export { default as SignIn } from "./Authentication/SignIn";
+export { default as SignUp } from "./Authentication/SignUp";
+export { default as Calendar } from "./Calendar";
+export { default as Chart } from "./Chart";
+export { default as ECommerce } from "./Dashboard/ECommerce";
+export { default as FormElements } from "./Form/FormElements";
+export { default as FormLayout } from "./Form/FormLayout";
+export { default as Alerts } from "./UiElements/Alerts"; 
+export { default as Buttons } from "./UiElements/Buttons"; 
+export { default as NotFound } from "./NotFound";  

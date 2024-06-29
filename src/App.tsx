@@ -1,49 +1,163 @@
-import { Routing } from "@/routes/index"; 
-import { UserState } from "@/types/index";
-import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import { useDispatch, useSelector } from "react-redux";
-import { currentUser } from "./redux/features/authSlice"; 
+import * as R from "react-router-dom";
+import * as L from "@/layout/index";
+import * as P from "@/pages/index";
+
+import Loader from './common/Loader';
+import PageTitle from './components/PageTitle';
+
+import { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom';
+
 
 const App = () => {
 
 
-  const { token } = useSelector((state: UserState) => state.auth);
-  const dispatch = useDispatch();
- 
-  
-
-  const [isToken, setIsToken] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
 
-    if (token) {
-      intervalId = setInterval(() => {
-        const decodedToken = jwtDecode(token);
-        if (decodedToken) {
-          const { exp } = decodedToken;
-          if (exp !== undefined && exp < Date.now() / 1000) {
-            setIsToken(!isToken)
-            localStorage.removeItem("token")
-            dispatch(currentUser({ user: null, token: null }));
+
+  const router = R.createBrowserRouter(
+    R.createRoutesFromElements(
+      //RootLayout start
+      <R.Route path='/' element={<L.RootLayout />}>
+
+
+        <Route
+          index
+          element={
+            <>
+              <PageTitle  title="eCommerce Dashboard | Metal Collection .Co LTD" />
+              <P.ECommerce />
+            </>
           }
-        }
-      }, 3000);
-    }
+        />
+        <Route
+          path="/calendar"
+          element={
+            <>
+              <PageTitle title="Calendar | Metal Collection .Co LTD" />
+              <P.Calendar />
+            </>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <>
+              <PageTitle title="Profile | Metal Collection .Co LTD" />
+              <P.Profile />
+            </>
+          }
+        />
+        <Route
+          path="/forms/form-elements"
+          element={
+            <>
+              <PageTitle title="Form Elements | Metal Collection .Co LTD" />
+              <P.FormElements />
+            </>
+          }
+        />
+        <Route
+          path="/forms/form-layout"
+          element={
+            <>
+              <PageTitle title="Form Layout | Metal Collection .Co LTD" />
+              <P.FormLayout />
+            </>
+          }
+        />
+        <Route
+          path="/tables"
+          element={
+            <>
+              <PageTitle title="Tables | Metal Collection .Co LTD" />
+              <P.Tables />
+            </>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <>
+              <PageTitle title="Settings | Metal Collection .Co LTD" />
+              <P.Settings />
+            </>
+          }
+        />
+        <Route
+          path="/chart"
+          element={
+            <>
+              <PageTitle title="Basic Chart | Metal Collection .Co LTD" />
+              <P.Chart />
+            </>
+          }
+        />
+        <Route
+          path="/ui/alerts"
+          element={
+            <>
+              <PageTitle title="Alerts | Metal Collection .Co LTD" />
+              <P.Alerts />
+            </>
+          }
+        />
+        <Route
+          path="/ui/buttons"
+          element={
+            <>
+              <PageTitle title="Buttons | Metal Collection .Co LTD" />
+              <P.Buttons />
+            </>
+          }
+        />
+        <Route
+          path="/auth/signin"
+          element={
+            <>
+              <PageTitle title="Signin | Metal Collection .Co LTD" />
+              <P.SignIn />
+            </>
+          }
+        />
+        <Route
+          path="/auth/signup"
+          element={
+            <>
+              <PageTitle title="Signup | Metal Collection .Co LTD" />
+              <P.SignUp />
+            </>
+          }
+        />
 
-    return () => clearInterval(intervalId);
-  }, [token, dispatch]);
+        <Route
+          path="*"
+          element={
+            <>
+              <PageTitle title="Oops page not found! | Metal Collection .Co LTD" />
+              <P.NotFound />
+            </>
+          }
+        />
 
 
 
+      </R.Route>
+      //  RootLayout end
+    )
+  );
 
-  return (
- 
-    <Routing
-      isToken={isToken}
-      setIsToken={setIsToken}
-    />
+
+
+  return loading ? <Loader /> : (
+    <>
+      <R.RouterProvider
+        router={router} />
+    </>
   )
 }
 
