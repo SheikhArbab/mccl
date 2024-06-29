@@ -15,6 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.6",
     "@types/react-icons": "^3.0.0",
     "@types/yup": "^0.32.0",
     "apexcharts": "^3.41.0",

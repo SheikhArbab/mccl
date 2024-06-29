@@ -1,12 +1,16 @@
 import * as C from "@/components/index";
-import { FC ,useState } from 'react';
+import { UserState } from "@/types/User";
+import { FC, useState } from 'react';
+import { useSelector } from "react-redux";
 import { Outlet } from 'react-router-dom';
 
 
 
-const RootLayout:FC = () => {
+const RootLayout: FC = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const { user } = useSelector((state:UserState)=> state.auth)
 
   return (
 
@@ -15,7 +19,7 @@ const RootLayout:FC = () => {
 
       <div className="flex h-screen overflow-hidden">
 
-        <C.Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        {user && <C.Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}
 
 
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
@@ -27,7 +31,7 @@ const RootLayout:FC = () => {
               <Outlet />
             </div>
           </main>
-          
+          <C.Footer />
         </div>
       </div>
     </div>

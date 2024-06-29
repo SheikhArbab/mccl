@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import DropdownNotification from './DropdownNotification';
-import DropdownUser from './DropdownUser'; 
+import DropdownUser from './DropdownUser';
 import DarkModeSwitcher from './DarkModeSwitcher';
 import { Translatable } from "@/components/index"
 import { useState } from 'react';
 import { FaAngleDown } from "react-icons/fa6";
 import { useLanguage } from '@/hooks/Language';
+import { useSelector } from 'react-redux';
+import { UserState } from '@/types/User';
 
 
 const Header = (props: {
@@ -17,7 +19,7 @@ const Header = (props: {
   const [langDropDown, setLangDropDown] = useState<boolean>(false)
 
 
-
+  const { user } = useSelector((state: UserState) => state.auth)
 
 
   const { translateText } = useLanguage();
@@ -45,7 +47,7 @@ const Header = (props: {
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
-          <button
+          {user && <button
             aria-controls="sidebar"
             onClick={(e) => {
               e.stopPropagation();
@@ -79,11 +81,12 @@ const Header = (props: {
                 ></span>
               </span>
             </span>
-          </button>
+          </button>}
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" to="/">
-            <img src={"/logo/w.png"} className='w-8 object-contain' alt="Logo" />
+            <img src={"/logo/w.png"} className='w-8 object-contain hidden dark:block' alt="Logo" />
+            <img src={"/logo/b.png"} className='w-8 object-contain dark:hidden' alt="Logo" />
           </Link>
         </div>
 
@@ -96,11 +99,11 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {user && <DropdownNotification />}
             {/* <!-- Notification Menu Area --> */}
 
             {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
+            {user && <DropdownMessage />}
             {/* <!-- Chat Notification Area --> */}
 
             <li className='relative'>
@@ -140,11 +143,16 @@ const Header = (props: {
               </div>}
             </li>
 
+            {!user && <li>
+              <Link to={"/auth/signin"} className="text-white bg-blue-700 hover:bg-blue-800   focus:outline-none  
+                 font-medium rounded-lg  px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700
+                    capitalize text-xs">Login</Link>
+            </li>}
 
           </ul>
 
           {/* <!-- User Area --> */}
-          <DropdownUser />
+          {user && <DropdownUser />}
           {/* <!-- User Area --> */}
         </div>
       </div>

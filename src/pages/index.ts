@@ -11,3 +11,4 @@ export { default as FormLayout } from "./Form/FormLayout";
 export { default as Alerts } from "./UiElements/Alerts"; 
 export { default as Buttons } from "./UiElements/Buttons"; 
 export { default as NotFound } from "./NotFound";  
+export { default as Home } from "./Home";  

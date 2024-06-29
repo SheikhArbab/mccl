@@ -2,14 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-// import 'jsvectormap/dist/jsvectormap.css';
-// import 'flatpickr/dist/flatpickr.min.css';
+import * as R from "@/redux/store.ts";
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { LanguageProvider } from "@/hooks/Language.tsx"
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
+    <Provider store={R.store}>
+      <PersistGate loading={null} persistor={R.persistor}>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
 )
