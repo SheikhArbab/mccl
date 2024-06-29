@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import DropdownNotification from './DropdownNotification';
-import DropdownUser from './DropdownUser';
-import LogoIcon from '../../images/logo/logo-icon.svg';
+import DropdownUser from './DropdownUser'; 
 import DarkModeSwitcher from './DarkModeSwitcher';
 import { Translatable } from "@/components/index"
 import { useState } from 'react';
