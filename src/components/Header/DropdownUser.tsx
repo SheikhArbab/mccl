@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Translatable } from "@/components/index"
 import ClickOutside from '../ClickOutside';
 import UserOne from '../../images/user/user-01.png';
 
@@ -15,9 +16,9 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            <Translatable text='Thomas Anree' />
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs"> <Translatable text='UX Designer' /></span>
         </span>
 
         <span className="h-12 w-12 rounded-full">
@@ -69,7 +70,7 @@ const DropdownUser = () => {
                     fill=""
                   />
                 </svg>
-                My Profile
+                <Translatable text='My Profile' />
               </Link>
             </li>
             <li>
@@ -90,7 +91,7 @@ const DropdownUser = () => {
                     fill=""
                   />
                 </svg>
-                My Contacts
+                <Translatable text='My Contacts' />
               </Link>
             </li>
             <li>
@@ -115,7 +116,7 @@ const DropdownUser = () => {
                     fill=""
                   />
                 </svg>
-                Account Settings
+                <Translatable text='Account Settings' />
               </Link>
             </li>
           </ul>
@@ -137,7 +138,7 @@ const DropdownUser = () => {
                 fill=""
               />
             </svg>
-            Log Out
+              <Translatable text='Log Out'/>
           </button>
         </div>
       )}

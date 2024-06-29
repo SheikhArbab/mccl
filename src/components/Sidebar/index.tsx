@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarLinkGroup from './SidebarLinkGroup';
-import Logo from '../../images/logo/logo.svg';
 import Translatable from '../Translatable';
 
 
@@ -11,7 +10,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
- 
+
 
 
   const location = useLocation();
@@ -68,8 +67,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+        <NavLink to="/" className={"flex items-center gap-2"}>
+          <figure className='w-14'>
+            <img src={"/logo/w.png"} alt="Logo" className='w-full h-full object-contain' />
+          </figure>
+          <h1 className='font-bold'>
+            <Translatable text=' Metal Collection .Co LTD' />
+          </h1>
         </NavLink>
 
         <button
@@ -646,7 +650,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </clipPath>
                           </defs>
                         </svg>
-                        Authentication
+                        <Translatable text='Authentication' />
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'
                             }`}
@@ -678,7 +682,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Sign In
+                              <Translatable text='Sign In' />
                             </NavLink>
                           </li>
                           <li>
@@ -689,7 +693,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Sign Up
+                                <Translatable text='Sign Up' />
                             </NavLink>
                           </li>
                         </ul>
