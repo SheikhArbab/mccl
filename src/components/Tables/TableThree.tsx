@@ -20,6 +20,9 @@ const TableThree: FC = () => {
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
+        Users
+      </h4>
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
@@ -31,8 +34,8 @@ const TableThree: FC = () => {
               ))}
             </tr>
           </thead>
-          <tbody>
-            {userData.map((user:any) => (
+          <tbody className="">
+            {userData.map((user: any) => (
               <tr key={user.user_id} className="border-b border-[#eee] dark:border-strokedark">
                 {["first_name", "last_name", "email"].map((key: any) => (
                   <td key={key} className="py-5 px-4">
@@ -43,7 +46,7 @@ const TableThree: FC = () => {
                   <Translatable text={user.roles_details?.role} />
                 </td>
                 <td className="py-5 px-4">
-                  {user.permissions_details?.map((perm:any) => (
+                  {user.permissions_details?.map((perm: any) => (
                     <span key={perm.id}>{perm.permission}</span>
                   ))}
                 </td>

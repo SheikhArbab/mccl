@@ -2,7 +2,7 @@ import { Breadcrumb, Translatable } from '@/components/index';
 import CoverOne from '../images/cover/cover-01.png';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { UserState } from '@/types/User'; 
+import { UserState } from '@/types/User';
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
 
@@ -41,7 +41,7 @@ const Profile = () => {
               <Translatable text={user ? user.first_name : ""} />
               <Translatable text={user ? user.last_name : ""} />
             </h3>
-            <p className="font-medium"> <Translatable text={user ? (user.roles || "user") : "user"} /></p>
+            {user && <p className="font-medium"> <Translatable text={user ? (user.roles_details && user.roles_details.role) : "user"} /></p>}
 
 
             <div className="mx-auto max-w-180">

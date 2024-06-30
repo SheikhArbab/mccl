@@ -17,6 +17,9 @@ const DropdownUser = () => {
 
   const { user } = useSelector((state: UserState) => state.auth)
 
+  console.log(user);
+  
+
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -28,7 +31,7 @@ const DropdownUser = () => {
           <span className="block text-sm font-medium text-black dark:text-white">
             <Translatable text={user ? user.first_name : ""} />
           </span>
-          <span className="block text-xs"> <Translatable text={user ? user.roles : ""} /></span>
+       {user && <span className="block text-xs"> <Translatable text={user ? (user.roles_details && user.roles_details.role) : "user"} /></span>}
         </span>
 
         <figure className="h-12 w-12 border-2 border-blue-700 rounded-full overflow-hidden">

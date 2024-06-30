@@ -9,5 +9,11 @@ export { default as Spinner } from "./Spinner"
 export { default as TableOne } from "./Tables/TableOne"
 export { default as TableThree } from "./Tables/TableThree"
 export { default as TableTwo } from "./Tables/TableTwo"
+export { default as CardDataStats } from "./CardDataStats"
+export { default as ChartOne } from "./Charts/ChartOne"
+export { default as ChartThree } from "./Charts/ChartThree"
+export { default as ChartTwo } from "./Charts/ChartTwo"
+export { default as ChatCard } from "./Chat/ChatCard"
+export { default as MapOne } from "./Maps/MapOne"
 
 

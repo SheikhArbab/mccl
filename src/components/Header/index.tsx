@@ -146,7 +146,7 @@ const Header = (props: {
             {!user && <li>
               <Link to={"/auth/signin"} className="text-white bg-blue-700 hover:bg-blue-800   focus:outline-none  
                  font-medium rounded-lg  px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700
-                    capitalize text-xs">Login</Link>
+                    capitalize text-xs">  <Translatable text='Login' /></Link>
             </li>}
 
           </ul>

@@ -1,4 +1,5 @@
-import { authApi } from "./auth"; 
+import { authApi } from "./auth";
+import { expensesApi } from "./expenses";
 
 
-export { authApi  };
+export { authApi, expensesApi };

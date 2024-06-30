@@ -7,8 +7,9 @@ import { persistReducer } from 'redux-persist';
 
 // Combine reducers
 const rootReducer = combineReducers({
-    auth: F.authReducer, 
-    [S.authApi.reducerPath]: S.authApi.reducer, 
+    auth: F.authReducer,
+    [S.authApi.reducerPath]: S.authApi.reducer,
+    [S.expensesApi.reducerPath]: S.expensesApi.reducer,
 });
 
 // Configure Redux persist
@@ -26,7 +27,8 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false })
             .concat(
-                S.authApi.middleware, 
+                S.authApi.middleware,
+                S.expensesApi.middleware,
             ),
 });
 
