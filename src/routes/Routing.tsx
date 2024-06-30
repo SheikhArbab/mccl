@@ -16,9 +16,7 @@ const Routing = () => {
             <R.Route path='/' element={<L.RootLayout />}>
 
 
-                <Route index element={<> <PageTitle
-                    title="Metal Collection .Co LTD" />
-                    <P.Home /> </>} />
+
 
 
                 {routes.map(r => <Route path={r.path} element={<>
@@ -42,6 +40,9 @@ const Routing = () => {
 
                 {/* Logout start*/}
                 <R.Route path='/' element={<L.LogOut />}>
+                    <Route index element={<> <PageTitle
+                        title="Metal Collection .Co LTD" />
+                        <P.Home /> </>} />
                     <R.Route path='/auth/signin' element={<P.SignIn />} />
                 </R.Route>
                 {/* Logout  end*/}

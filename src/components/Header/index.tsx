@@ -124,7 +124,7 @@ const Header = (props: {
 
               {langDropDown && <div
                 id="dropdown"
-                className=" absolute top-10 right-0 z-[60] bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700"
+                className=" absolute top-10 right-0 z-[60] bg-white dark:bg-black divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700"
               >
                 <ul
                   className="py-2 text-sm text-gray-700 dark:text-gray-200"

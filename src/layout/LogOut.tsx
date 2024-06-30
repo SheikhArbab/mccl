@@ -6,7 +6,7 @@ const LogOut = () => {
 
     const { token } = useSelector((s: UserState) => s.auth)
 
-    return token ? <Navigate to="/" replace /> :  <Outlet />
+    return token ? <Navigate to="/dashboard" replace /> : <Outlet />
 }
 
 export default LogOut

@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import { IoMailOutline } from "react-icons/io5";
-import { RiLockPasswordLine } from "react-icons/ri";
+import { RiLockPasswordLine } from "react-icons/ri"; 
 
 const SignIn: React.FC = () => {
 
@@ -243,7 +243,7 @@ const SignIn: React.FC = () => {
                     </span>
                   </div>
                   {touched.email && errors.email && (
-                    <p className="text-red-500 text-xs ">{errors.email}</p>
+                    <p className="text-red-500 text-xs "> <Translatable text={errors.email} /></p>
                   )}
                 </div>
 
@@ -265,7 +265,7 @@ const SignIn: React.FC = () => {
                     </span>
                   </div>
                   {touched.password && errors.password && (
-                    <p className="text-red-500 text-xs ">{errors.password}</p>
+                    <p className="text-red-500 text-xs "><Translatable text={errors.password} /></p>
                   )}
                 </div>
 
