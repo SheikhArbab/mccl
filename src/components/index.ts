@@ -15,5 +15,6 @@ export { default as ChartThree } from "./Charts/ChartThree"
 export { default as ChartTwo } from "./Charts/ChartTwo"
 export { default as ChatCard } from "./Chat/ChatCard"
 export { default as MapOne } from "./Maps/MapOne"
+export { default as DatePicker } from "./keep-react/DatePicker"
 
 
