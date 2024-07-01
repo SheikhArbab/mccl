@@ -9,8 +9,6 @@ import Loader from "@/common/Loader";
 
 const Routing = () => {
 
-    
-
     const router = R.createBrowserRouter(
         R.createRoutesFromElements(
             //RootLayout start
