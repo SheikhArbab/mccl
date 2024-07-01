@@ -1,13 +1,38 @@
 import { useEffect, useState, FC } from "react";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 import Loader from '@/common/Loader';
-import { Translatable } from "@/components/index";
-import { useGetAllUsersQuery } from '@/redux/services/auth';
+import { Translatable, Modal } from "@/components/index";
+import { useGetAllUsersQuery, useDeleteUserMutation } from '@/redux/services/auth';
 import * as T from "@/types/User";
+import toast, { Toaster } from 'react-hot-toast';
 
 const TableThree: FC = () => {
   const [userData, setUserData] = useState<T.User[]>([]);
-  const { data, isLoading } = useGetAllUsersQuery<any>({});
+  const { data, isLoading, refetch } = useGetAllUsersQuery<any>({});
+
+
+
+  const [deleteFnc] = useDeleteUserMutation<any>({});
+
+
+  const handleDelete = async (id: number) => {
+    try {
+      const res = await deleteFnc(id);
+
+      console.log(res,id);
+      
+
+      if (res.error) {
+        toast.error("Something Went Wrong");
+      } else if (res && res.data == null) {
+        toast.success("User deleted successfully");
+        refetch()
+      }
+
+    } catch (error: any) {
+      toast.error(`Something Went Wrong ${error.message}`);
+    }
+  };
 
   useEffect(() => {
     if (data) {
@@ -16,12 +41,12 @@ const TableThree: FC = () => {
   }, [data]);
 
   if (isLoading) return <Loader />;
-  if (userData.length === 0) return <h1 className='text-center capitalize'>no users yet !</h1>;
+  if (userData.length === 0) return <h1 className='text-center capitalize'> <Translatable text={"no users yet !"} /> </h1>;
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Users
+        <Translatable text={"Users"} />
       </h4>
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
@@ -51,10 +76,10 @@ const TableThree: FC = () => {
                   ))}
                 </td>
                 <td className="capitalize flex items-center gap-2 text-xl py-5 px-4">
-                  <button className='text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center'>
-                    <MdDelete />
+                  <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                    <Modal deleteFnc={() => handleDelete(user.user_id)} />
                   </button>
-                  <button className='text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center'>
+                  <button className='dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center'>
                     <MdEdit />
                   </button>
                 </td>
@@ -62,6 +87,7 @@ const TableThree: FC = () => {
             ))}
           </tbody>
         </table>
+        <Toaster />
       </div>
     </div>
   );

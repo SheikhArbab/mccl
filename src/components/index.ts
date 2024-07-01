@@ -17,6 +17,7 @@ export { default as ChatCard } from "./Chat/ChatCard"
 export { default as MapOne } from "./Maps/MapOne"
 export { default as DatePicker } from "./keep-react/DatePicker"
 export { default as SelectGroupOne } from "./Forms/SelectGroup/SelectGroupOne"
- 
+export { default as Modal } from "./Modal"
+
 
 

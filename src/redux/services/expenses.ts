@@ -32,7 +32,7 @@ export const expensesApi = createApi({
         }),
         getAllExpensess: builder.query({
             query: () => ({
-                url: `users/`,
+                url: `expenses/list/`,
                 method: 'GET'
             }),
         }),
@@ -45,7 +45,7 @@ export const expensesApi = createApi({
         }),
         deleteExpenses: builder.mutation({
             query: (userId) => ({
-                url: `account-delete/${userId}`,
+                url: `expenses/delete/${userId}/`,
                 method: 'DELETE',
             }),
         }),

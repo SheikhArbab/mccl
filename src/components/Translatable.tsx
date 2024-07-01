@@ -2,7 +2,7 @@ import  { useEffect, FC } from 'react';
 import { useLanguage } from '@/hooks/Language';
 
 type Props = {
-    text: string;
+    text: string | any;
 };
 
 const Translatable: FC<Props> = ({ text }) => {
