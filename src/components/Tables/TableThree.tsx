@@ -11,6 +11,7 @@ const TableThree: FC = () => {
   const { data, isLoading, refetch } = useGetAllUsersQuery<any>({});
  
 
+  useEffect(()=>{refetch()},[])
 
   const [deleteFnc] = useDeleteUserMutation<any>({});
 

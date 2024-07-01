@@ -14,6 +14,9 @@ const TableOne = () => {
   const [deleteFnc] = useDeleteExpensesMutation<any>({});
 
 
+useEffect(()=>{refetch()},[])
+
+
   const handleExpensesDelete = async (id: number) => {
     try {
       const res = await deleteFnc(id);
