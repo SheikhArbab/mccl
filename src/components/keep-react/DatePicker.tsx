@@ -3,16 +3,29 @@ import { useState } from 'react';
 import { Calendar } from 'phosphor-react';
 import { Button, DatePicker, Popover, PopoverContent, PopoverTrigger } from 'keep-react';
 
-const DatePickerC = () => {
-    const [date, setDate] = useState<Date>();
+interface DatePickerCProps {
+    value: string | any;
+    onChange: (date: Date | null) => void;
+    onBlur: () => void;
+}
+
+const DatePickerC = ({ value, onChange, onBlur }: DatePickerCProps) => {
+    const [date, setDate] = useState<string | any>(value);
+
+    const handleSelect = (selectedDate: string | any) => {
+        setDate(selectedDate);
+        onChange(selectedDate);
+    };
 
     return (
         <Popover showArrow={false} placement="bottom-start">
             <PopoverTrigger asChild>
                 <Button
-                    className="w-[286px] justify-start gap-2 rounded-xl border border-metal-50 px-4 text-left text-body-4 font-normal text-metal-600 hover:bg-white active:focus:scale-100 dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800"
+                    type="button"
+                    className="text-sm w-full h-12"
                     variant="outline"
                     color="secondary"
+                    onBlur={onBlur}
                 >
                     <Calendar size={20} className="text-metal-400 dark:text-white" />
                     {date ? format(date, 'PPP') : <span>Select Your Date</span>}
@@ -22,12 +35,12 @@ const DatePickerC = () => {
                 <DatePicker
                     mode="single"
                     selected={date}
-                    onSelect={setDate}
+                    onSelect={handleSelect}
                     showOutsideDays={true}
                 />
             </PopoverContent>
         </Popover>
     );
-}
+};
 
 export default DatePickerC;

@@ -16,7 +16,7 @@ const Tables = () => {
 
         <C.TableThree />
 
-        <Link to={"/auth/signup"}
+        <Link to={"/add-expenses"}
           className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg  
           px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs">
           <C.Translatable text='add a new expenses' />

@@ -21,6 +21,11 @@ export const routes: RouteItem[] = [
 
 export const authenticate: RouteItem[] = [ 
     {
+        path: "/add-expenses",
+        title: "Dashboard | Metal Collection .Co LTD",
+        element: P.CreateExpenses
+    },
+    {
         path: "/dashboard",
         title: "Dashboard | Metal Collection .Co LTD",
         element: P.ECommerce
