@@ -1,4 +1,4 @@
-import  { useEffect, FC } from 'react';
+import { FC } from 'react';
 import { useLanguage } from '@/hooks/Language';
 
 type Props = {
@@ -6,13 +6,8 @@ type Props = {
 };
 
 const Translatable: FC<Props> = ({ text }) => {
-    const { translateText, translatedTexts } = useLanguage();
+    const { translatedTexts } = useLanguage();
 
-    useEffect(() => { 
-        if (!translatedTexts.has(text)) {
-            translateText(text, "en", "");  
-        }
-    }, [text, translateText, translatedTexts]);
 
     const translatedText = translatedTexts.get(text) || text;
 

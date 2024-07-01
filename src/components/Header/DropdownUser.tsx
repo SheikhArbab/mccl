@@ -16,9 +16,7 @@ const DropdownUser = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state: UserState) => state.auth)
-
-  console.log(user);
-  
+ 
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">

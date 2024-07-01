@@ -38,9 +38,7 @@ const SignUp: React.FC = () => {
 
       try {
 
-        const res: any = await data({ ...formValues, roles: 2 })
-        console.log(res);
-
+        const res: any = await data({ ...formValues, roles: 2 }) 
 
         if (res.error) toast.error("Something Went Wrong !")
 

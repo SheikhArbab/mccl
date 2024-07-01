@@ -57,7 +57,7 @@ const CreateExpenses: FC = () => {
 
       try {
         const res: any = await data({ ...rest, date: formatDate(date), due_date: formatDate(due_date) });
-        console.log(res);
+ 
 
         if (res.error) toast.error("Something Went Wrong!");
         if (res && res.data) toast.success("Expenses Added Successfully");

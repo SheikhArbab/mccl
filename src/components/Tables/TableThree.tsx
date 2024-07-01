@@ -9,18 +9,15 @@ import toast, { Toaster } from 'react-hot-toast';
 const TableThree: FC = () => {
   const [userData, setUserData] = useState<T.User[]>([]);
   const { data, isLoading, refetch } = useGetAllUsersQuery<any>({});
-
+ 
 
 
   const [deleteFnc] = useDeleteUserMutation<any>({});
 
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     try {
-      const res = await deleteFnc(id);
-
-      console.log(res,id);
-      
+      const res = await deleteFnc(id); 
 
       if (res.error) {
         toast.error("Something Went Wrong");
@@ -61,8 +58,8 @@ const TableThree: FC = () => {
           </thead>
           <tbody className="">
             {userData.map((user: any) => (
-              <tr key={user.user_id} className="border-b border-[#eee] dark:border-strokedark">
-                {["first_name", "last_name", "email"].map((key: any) => (
+              <tr key={user.id} className="border-b border-[#eee] dark:border-strokedark">
+                {["first_name", "last_name", "email"].map((key: string) => (
                   <td key={key} className="py-5 px-4">
                     <Translatable text={user[key]} />
                   </td>
@@ -77,15 +74,16 @@ const TableThree: FC = () => {
                 </td>
                 <td className="capitalize flex items-center gap-2 text-xl py-5 px-4">
                   <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
-                    <Modal deleteFnc={() => handleDelete(user.user_id)} />
+                    <Modal deleteFnc={() => handleDelete(user.id)} />
                   </button>
-                  <button className='dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center'>
+                  <button className="dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                     <MdEdit />
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
+
         </table>
         <Toaster />
       </div>
