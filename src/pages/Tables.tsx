@@ -24,7 +24,7 @@ const Tables = () => {
 
         <C.TableOne />
 
-        <C.TableTwo />
+        {/* <C.TableTwo /> */}
 
       </div>
     </>

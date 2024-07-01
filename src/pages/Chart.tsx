@@ -1,10 +1,7 @@
-import React from 'react';
-import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import ChartOne from '../components/Charts/ChartOne';
-import ChartThree from '../components/Charts/ChartThree';
-import ChartTwo from '../components/Charts/ChartTwo';
+import { FC } from 'react';
+import { Breadcrumb, ChartOne, ChartThree, ChartTwo } from '@/components/index';
 
-const Chart: React.FC = () => {
+const Chart: FC = () => {
   return (
     <>
       <Breadcrumb pageName="Chart" />
