@@ -46,6 +46,9 @@ const Settings = () => {
 
         const res: any = await updatedUser({ userId: user?.user_id, updateData: formValues })
 
+        console.log(res);
+
+
         if (res.error) toast.error("Something Went Wrong !")
 
         if (res && res.data) {

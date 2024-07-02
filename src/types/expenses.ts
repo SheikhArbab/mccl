@@ -14,3 +14,20 @@ export type Expense = {
     currency: string;
     supplier: string;
 };
+
+
+
+export interface ExpensesSearchParams {
+    date?: string;
+    paidTo?: string;
+    amount?: string;
+    chequeNo?: string;
+    bank?: string;
+    sumOfSr?: string;
+    forWhat?: string;
+    invoiceNumber?: string;
+    dueDate?: string;
+    taxAmount?: string;
+    currency?: string;
+    supplier?: string;
+  }

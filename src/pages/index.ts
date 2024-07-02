@@ -13,3 +13,4 @@ export { default as Buttons } from "./UiElements/Buttons";
 export { default as NotFound } from "./NotFound";  
 export { default as Home } from "./Home";  
 export { default as CreateExpenses } from "./CreateExpenses";    
+export { default as Expenses } from "./Expenses";    

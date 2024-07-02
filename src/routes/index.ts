@@ -19,7 +19,12 @@ export const routes: RouteItem[] = [
 ];
 
 
-export const authenticate: RouteItem[] = [ 
+export const authenticate: RouteItem[] = [
+    {
+        path: "/expenses",
+        title: "Dashboard | Metal Collection .Co LTD",
+        element: P.Expenses
+    },
     {
         path: "/add-expenses",
         title: "Dashboard | Metal Collection .Co LTD",
@@ -74,7 +79,7 @@ export const authenticate: RouteItem[] = [
         path: "/ui/buttons",
         title: "Buttons | Metal Collection .Co LTD",
         element: P.Buttons
-    }, 
+    },
     {
         path: "/auth/signup",
         title: "Signup | Metal Collection .Co LTD",

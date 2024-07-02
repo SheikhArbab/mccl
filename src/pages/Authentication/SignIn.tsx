@@ -42,6 +42,8 @@ const SignIn: React.FC = () => {
 
         const res: any = await loginUser(formValues)
 
+ 
+        
 
         if (res.error) toast.error("Wrong credentials !")
 
@@ -54,6 +56,9 @@ const SignIn: React.FC = () => {
           const { exp, iat, jti, token_type, ...user } = data 
 
           dispatch(currentUser({ user, token: res.data.access }));
+
+          console.log(user);
+          
 
 
           toast.success("User Login Successfully")

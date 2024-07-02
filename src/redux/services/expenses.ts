@@ -30,12 +30,35 @@ export const expensesApi = createApi({
                 method: 'GET'
             }),
         }),
-        getAllExpensess: builder.query({
-            query: () => ({
-                url: `expenses/list/`,
-                method: 'GET'
-            }),
+        getAllExpenses: builder.query({
+            query: ({ date, paidTo, amount, chequeNo, bank, sumOfSr, forWhat, invoiceNumber, dueDate, taxAmount, currency, supplier }) => {
+                // Filter out undefined parameters
+                const queryParams: any = {
+                    ...(date !== undefined && { date }),
+                    ...(paidTo !== undefined && { paid_to: paidTo }),
+                    ...(amount !== undefined && { amount }),
+                    ...(chequeNo !== undefined && { cheque_no: chequeNo }),
+                    ...(bank !== undefined && { bank: encodeURIComponent(bank) }),
+                    ...(sumOfSr !== undefined && { sum_of_sr: sumOfSr }),
+                    ...(forWhat !== undefined && { for_what: encodeURIComponent(forWhat) }),
+                    ...(invoiceNumber !== undefined && { invoice_number: invoiceNumber }),
+                    ...(dueDate !== undefined && { due_date: dueDate }),
+                    ...(taxAmount !== undefined && { tax_amount: taxAmount }),
+                    ...(currency !== undefined && { currency }),
+                    ...(supplier !== undefined && { supplier: encodeURIComponent(supplier) }),
+                };
+ 
+                const queryString = Object.keys(queryParams)
+                    .map(key => `${key}=${queryParams[key]}`)
+                    .join('&');
+
+                return {
+                    url: `expenses/filter/?${queryString}`,
+                    method: 'GET'
+                };
+            },
         }),
+
         updateExpenses: builder.mutation({
             query: ({ userId, updateData }) => ({
                 url: `user/${userId}/`,
@@ -55,7 +78,7 @@ export const expensesApi = createApi({
 export const {
 
     useDeleteExpensesMutation,
-    useGetAllExpensessQuery,
+    useGetAllExpensesQuery,
     useGetExpensesByIdQuery,
     useNewExpensesMutation,
     useUpdateExpensesMutation

@@ -109,10 +109,10 @@ const CreateExpenses: FC = () => {
             </h3>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="p-6.5 flex gap-5 relative">
+            <div className="p-6.5 flex gap-5 relative flex-wrap">
 
 
-              <div className="flex-1">
+              <div className="md:flex-1">
 
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row items-center">
                   <div className='w-60'>
@@ -319,12 +319,11 @@ const CreateExpenses: FC = () => {
 
               </div>
 
-              <div className="w-[40rem] sticky top-24 h-fit">
-                <FileUpload onFilesChange={handleFilesChange} />
+              <div className="w-full md:w-[40rem] sticky top-24 h-fit">
 
                 {/* Display uploaded images */}
                 {uploadedFiles.length > 0 && (
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex  overflow-x-auto gap-4">
                     {uploadedFiles.map((file, index) => (
                       <img
                         key={index}
@@ -335,6 +334,7 @@ const CreateExpenses: FC = () => {
                     ))}
                   </div>
                 )}
+                <FileUpload onFilesChange={handleFilesChange} />
               </div>
 
 
