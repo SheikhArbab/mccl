@@ -8,7 +8,7 @@ const DropdownNotification = () => {
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
-      <li>
+      <li className='hidden md:block'>
         <Link
           onClick={() => {
             setNotifying(false);

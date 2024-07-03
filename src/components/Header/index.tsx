@@ -4,9 +4,9 @@ import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownUser';
 import DarkModeSwitcher from './DarkModeSwitcher';
 import { Translatable } from "@/components/index"
-import { useState } from 'react';
-import { FaAngleDown } from "react-icons/fa6";
-import { useLanguage } from '@/hooks/Language';
+// import { useState } from 'react';
+// import { FaAngleDown } from "react-icons/fa6";
+// import { useLanguage } from '@/hooks/Language';
 import { useSelector } from 'react-redux';
 import { UserState } from '@/types/User';
 
@@ -16,28 +16,28 @@ const Header = (props: {
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
 
-  const [langDropDown, setLangDropDown] = useState<boolean>(false)
+  // const [langDropDown, setLangDropDown] = useState<boolean>(false)
 
 
   const { user } = useSelector((state: UserState) => state.auth)
 
 
-  const { translateText } = useLanguage();
+  // const { translateText } = useLanguage();
 
 
-  const handleTranslateSite = async (source: string, targetLang: string) => {
-    const elementsToTranslate = document.querySelectorAll('[data-translate]');
+  // const handleTranslateSite = async (source: string, targetLang: string) => {
+  //   const elementsToTranslate = document.querySelectorAll('[data-translate]');
 
-    try {
-      await Promise.all(Array.from(elementsToTranslate).map(async (element: any) => {
-        const text = element.textContent || '';
-        const translatedText = await translateText(text, targetLang, source);
-        element.textContent = translatedText;
-      }));
-    } catch (error) {
-      console.error('Error translating elements:', error);
-    }
-  };
+  //   try {
+  //     await Promise.all(Array.from(elementsToTranslate).map(async (element: any) => {
+  //       const text = element.textContent || '';
+  //       const translatedText = await translateText(text, targetLang, source);
+  //       element.textContent = translatedText;
+  //     }));
+  //   } catch (error) {
+  //     console.error('Error translating elements:', error);
+  //   }
+  // };
 
 
 
@@ -106,7 +106,7 @@ const Header = (props: {
             {user && <DropdownMessage />}
             {/* <!-- Chat Notification Area --> */}
 
-            <li className='relative'>
+            {/* <li className='relative'>
               <button
                 onClick={() => setLangDropDown(!langDropDown)}
                 id="dropdownDefaultButton"
@@ -141,12 +141,13 @@ const Header = (props: {
 
                 </ul>
               </div>}
-            </li>
+            </li> */}
 
             {!user && <li>
               <Link to={"/auth/signin"} className="text-white bg-blue-700 hover:bg-blue-800   focus:outline-none  
                  font-medium rounded-lg  px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700
-                    capitalize text-xs">  <Translatable text='Login' /></Link>
+                    capitalize text-xs">  <Translatable text='Login' />
+              </Link>
             </li>}
 
           </ul>

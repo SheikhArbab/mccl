@@ -18,7 +18,8 @@ const SignUp: React.FC = () => {
       email: "",
       password: "",
       first_name: "",
-      last_name: ""
+      last_name: "",
+      roles_detail:3
     },
 
     validationSchema: Yup.object({

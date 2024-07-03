@@ -41,7 +41,7 @@ const Profile = () => {
               <Translatable text={user ? user.first_name : ""} />
               <Translatable text={user ? user.last_name : ""} />
             </h3>
-            {user && <p className="font-medium"> <Translatable text={user ? (user.roles_details && user.roles_details.role) : "user"} /></p>}
+            {user && <p className="font-medium"> <Translatable text={user ? (user.roles.role) : "user"} /></p>}
 
 
             <div className="mx-auto max-w-180">

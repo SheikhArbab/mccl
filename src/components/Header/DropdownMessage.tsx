@@ -13,7 +13,7 @@ const DropdownMessage = () => {
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
-      <li className="relative">
+      <li className="relative hidden md:block">
         <Link
           onClick={() => {
             setNotifying(false);
@@ -23,9 +23,8 @@ const DropdownMessage = () => {
           to="#"
         >
           <span
-            className={`absolute -top-0.5 -right-0.5 z-1 h-2 w-2 rounded-full bg-meta-1 ${
-              notifying === false ? 'hidden' : 'inline'
-            }`}
+            className={`absolute -top-0.5 -right-0.5 z-1 h-2 w-2 rounded-full bg-meta-1 ${notifying === false ? 'hidden' : 'inline'
+              }`}
           >
             <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
           </span>

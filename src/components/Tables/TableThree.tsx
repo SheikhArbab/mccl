@@ -5,6 +5,7 @@ import { Translatable, Modal } from "@/components/index";
 import { useGetAllUsersQuery, useDeleteUserMutation } from '@/redux/services/auth';
 import * as T from "@/types/User";
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom";
 
 const TableThree: FC = () => {
   const [userData, setUserData] = useState<T.User[]>([]);
@@ -66,7 +67,7 @@ const TableThree: FC = () => {
                   </td>
                 ))}
                 <td className="py-5 px-4">
-                  <Translatable text={user.roles_details?.role} />
+                  <Translatable text={user?.roles?.role} />
                 </td>
                 <td className="py-5 px-4">
                   {user.permissions_details?.map((perm: any) => (
@@ -77,9 +78,9 @@ const TableThree: FC = () => {
                   <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                     <Modal deleteFnc={() => handleDelete(user.id)} />
                   </button>
-                  <button className="dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                  <Link to={`/user-settings/${user.id}`} className="dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                     <MdEdit />
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}
