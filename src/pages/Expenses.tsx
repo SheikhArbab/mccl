@@ -106,7 +106,7 @@ const Expenses = () => {
                 <Link to={"/add-expenses"}
                     className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg  
           px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs ">
-                    <Translatable text='add a new expenses' />
+                    <Translatable text='add a new expenses / إضافة نفقات جديدة' />
                 </Link>
 
                 <div className="flex flex-wrap gap-4 ">
@@ -129,9 +129,7 @@ const Expenses = () => {
 
 
             {expensesData.length > 0 ? <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-                <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-                    Expenses
-                </h4>
+
 
 
 
@@ -143,7 +141,7 @@ const Expenses = () => {
                         <thead>
                             <tr className="bg-gray-200 text-left dark:bg-meta-4">
                                 {tableHeaders.map((header) => (
-                                    <th key={header.key} className={`min-w-[${header.width}] py-4 px-4 font-medium text-black dark:text-white xl:pl-11`}>
+                                    <th key={header.key} className={`min-w-[${header.width}] py-4 px-4 font-medium text-black dark:text-white xl:pl-11  w-fit text-nowrap`}>
                                         <Translatable text={header.label} />
                                     </th>
                                 ))}
@@ -151,7 +149,7 @@ const Expenses = () => {
                         </thead>
                         <tbody>
                             {expensesData.map((expense: T.Expense) => (
-                                <tr key={expense.id} className="border-b border-gray-300 dark:border-strokedark">
+                                <tr key={expense.id} className="border-b border-gray-300 dark:border-strokedark w-full">
                                     {tableHeaders.map((header) => (
                                         <td key={header.key} className="py-3 px-4">
                                             {header.key === "actions" ? (
@@ -159,9 +157,9 @@ const Expenses = () => {
                                                     <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                                                         <Modal deleteFnc={() => handleExpensesDelete(expense.id)} />
                                                     </button>
-                                                    <button className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                                                    <Link to={`/expenses-settings/${expense.id}`} className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                                                         <MdEdit />
-                                                    </button>
+                                                    </Link>
                                                 </div>
                                             ) : (
                                                 <Translatable text={expense[header.key as keyof T.Expense]} />

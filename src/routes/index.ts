@@ -71,6 +71,11 @@ export const authenticate: RouteItem[] = [
         element: P.UserDetail
     },
     {
+        path: "/expenses-settings/:id",
+        title: "Settings | Metal Collection .Co LTD",
+        element: P.ExpensesSettings
+    },
+    {
         path: "/chart",
         title: "Basic Chart | Metal Collection .Co LTD",
         element: P.Chart

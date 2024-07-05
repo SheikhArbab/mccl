@@ -29,7 +29,7 @@ const DropdownUser = () => {
           <span className="block text-sm font-medium text-black dark:text-white">
             <Translatable text={user ? user.first_name : ""} />
           </span>
-       {user && <span className="block text-xs"> <Translatable text={user ? user.roles.role : ""} /></span>}
+       {user && <span className="block text-xs"> <Translatable text={user ? (user?.roles && user.roles.role) : ""} /></span>}
         </span>
 
         <figure className="h-12 w-12 border-2 border-blue-700 rounded-full overflow-hidden">
@@ -48,11 +48,11 @@ const DropdownUser = () => {
 
             {[{
               path: "/profile",
-              title: "My Profile",
+              title: "My Profile / ملفي",
               icon: AiOutlineUser
             }, {
               path: "/settings",
-              title: "Account Settings",
+              title: "Account Settings / إعدادت الحساب",
               icon: GoGear
             },].map(v => <li key={v.title}>
               <Link
@@ -68,7 +68,7 @@ const DropdownUser = () => {
             onClick={() => dispatch(currentUser({ user: null, token: null }))}
             className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
             <TbLogout2 size={22} />
-            <Translatable text='Log Out' />
+            <Translatable text='Log Out / تسجيل خروج' />
           </button>
         </div>
       )}

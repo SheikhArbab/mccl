@@ -5,6 +5,7 @@ import { Translatable, Modal } from "@/components/index";
 import { useGetAllExpensesQuery, useDeleteExpensesMutation } from '@/redux/services/expenses';
 import * as T from "@/types/expenses";
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom";
 
 const TableOne = () => {
   const [expensesData, setExpensesData] = useState<T.Expense[]>([]);
@@ -116,9 +117,9 @@ const TableOne = () => {
                           <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                             <Modal deleteFnc={() => handleExpensesDelete(expense.id)} />
                           </button>
-                          <button className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                          <Link to={`/expenses-settings/${expense.id}`} className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                             <MdEdit />
-                          </button>
+                          </Link>
                         </div>
                       ) : (
                         <Translatable text={expense[header.key as keyof T.Expense]} />

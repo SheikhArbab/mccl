@@ -40,9 +40,7 @@ const SignIn: React.FC = () => {
 
       try {
 
-        const res: any = await loginUser(formValues)
-
- 
+        const res: any = await loginUser(formValues) 
         
 
         if (res.error) toast.error("Wrong credentials !")
@@ -56,13 +54,8 @@ const SignIn: React.FC = () => {
           const { exp, iat, jti, token_type, ...user } = data 
 
           dispatch(currentUser({ user, token: res.data.access }));
-
-          console.log(user);
-          
-
-
-          toast.success("User Login Successfully")
-
+ 
+ 
           setTimeout(() => {
             navigate('/dashboard')
           }, 1000);
@@ -223,7 +216,7 @@ const SignIn: React.FC = () => {
           <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">
-                <Translatable text='Start for free' />
+                <Translatable text='Start for free / ابدأ مجانًا' />
               </span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2 capitalize">
                 <Translatable text='Sign In to Metal Collection .Co LTD' />

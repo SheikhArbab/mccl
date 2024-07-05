@@ -48,8 +48,7 @@ const Settings = () => {
       try {
 
         const res: any = await updatedUser({ userId: user?.id, updateData: formValues })
-
-        console.log(res.data);
+ 
 
 
         if (res.error) toast.error("Something Went Wrong !")
@@ -85,7 +84,7 @@ const Settings = () => {
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  <Translatable text='Personal Information' />
+                  <Translatable text='Personal Information / معلومات شخصية' />
                 </h3>
               </div>
               <div className="p-7">
@@ -101,7 +100,7 @@ const Settings = () => {
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="first_name"
                       >
-                        <Translatable text='First Name' />
+                        <Translatable text='First Name / الاسم الأول' />
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -150,7 +149,7 @@ const Settings = () => {
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="last_name"
                       >
-                        <Translatable text='Last Name' />
+                        <Translatable text='Last Name / اسم العائلة' />
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -201,7 +200,7 @@ const Settings = () => {
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="email"
                     >
-                      <Translatable text='Email Address' />
+                      <Translatable text='Email Address / عنوان البريد الإلكتروني' />
                     </label>
                     <div className="relative">
                       <span className="absolute left-4.5 top-4">
@@ -260,7 +259,7 @@ const Settings = () => {
                       className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90"
                       type="submit"
                     >
-                      {isLoading ? <Spinner size='6' /> : <Translatable text={"Save"} />}
+                      {isLoading ? <Spinner size='6' /> : <Translatable text={"Save / يحفظ"} />}
                     </button>
                   </div>
 

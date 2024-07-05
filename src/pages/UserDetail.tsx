@@ -1,39 +1,39 @@
-import { Breadcrumb, Spinner, Translatable } from '@/components/index';
+import { Breadcrumb, Spinner, Translatable, MultiSelect } from '@/components/index';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useGetUserByIdQuery, useUpdateUserMutation } from '@/redux/services/auth';
 import toast, { Toaster } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from '@/common/Loader';
 import { useSelector } from 'react-redux';
 import { UserState } from '@/types/User';
+import { useState } from 'react';
 
 const UserDetail = () => {
 
 
-const { user:UserStateData } = useSelector((state:UserState) => state.auth);
+  const { user: UserStateData } = useSelector((state: UserState) => state.auth);
 
   const { id } = useParams();
-  const { data: user, isLoading: isUserLoading, isError: isUserError } = useGetUserByIdQuery(id);
+  const { data: user, isLoading: isUserLoading, refetch } = useGetUserByIdQuery(id);
 
   const [updatedUser, { isLoading: isUpdateLoading }] = useUpdateUserMutation();
 
-  const [selectedOption, setSelectedOption] = useState('');
-  const [isOptionSelected, setIsOptionSelected] = useState(false);
+  const [selectedPermission, setSelectedPermission] = useState<number[]>();
 
-  useEffect(() => {
-    if (user) {
-      setSelectedOption(user.someField); // Example of setting selectedOption based on user data
-    }
-  }, [user]); // Ensure useEffect runs when user data changes
+  const selectPermisionOfUser: number[] = (user && user?.permissions?.map((v: any) => v.id - 1)) || [];
+
+
 
   const { handleChange, handleSubmit, handleBlur, touched, errors, values } = useFormik({
     enableReinitialize: true,
     initialValues: {
       first_name: user?.first_name || '',
       last_name: user?.last_name || '',
-      roles_detail: (`user && user.roles &&  user?.roles?.id`) || '',
+      roles_detail: (user && user.roles && user?.roles?.id) || 3,
+      permissions_detail: (user && user.permissions && user.permissions.length > 0)
+        ? user.permissions.map((permission: any) => permission.id)
+        : [],
       email: user?.email || '',
     },
     validationSchema: Yup.object({
@@ -42,8 +42,11 @@ const { user:UserStateData } = useSelector((state:UserState) => state.auth);
       email: Yup.string().email('Invalid email address').required('Email is required'),
     }),
     onSubmit: async (formValues) => {
+
+      const { permissions_detail, ...rest } = formValues
+
       try {
-        const res = await updatedUser({ userId: user?.id, updateData: formValues });
+        const res = await updatedUser({ userId: user?.id, updateData: { permissions_detail: selectedPermission, ...rest } });
 
         if (res.error) {
           toast.error('Something went wrong!');
@@ -51,6 +54,7 @@ const { user:UserStateData } = useSelector((state:UserState) => state.auth);
 
         if (res.data) {
           toast.success('User updated successfully');
+          refetch()
         }
       } catch (error) {
         toast.error(`Something went wrong! ${error}`);
@@ -182,8 +186,10 @@ const { user:UserStateData } = useSelector((state:UserState) => state.auth);
 
                   </div>
 
-                  {/* user?.roles.role.toLowerCase() == "manager"  || user?.roles.role.toLowerCase() == "admin" */}
-                  {true && <div className="mb-5.5">
+
+
+
+                  {UserStateData?.roles?.role == "Manager" || UserStateData?.roles?.role == "Admin" && <div className="mb-5.5">
                     <label
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="last_name"
@@ -224,30 +230,36 @@ const { user:UserStateData } = useSelector((state:UserState) => state.auth);
                       </span>
 
                       <select
-                        value={selectedOption}
-                        onChange={(e) => {
-                          setSelectedOption(e.target.value);
-                        }}
-                        className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${isOptionSelected ? 'text-black dark:text-white' : ''
+                        name="roles_detail"
+                        value={values.roles_detail}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`relative z-20 w-full capitalize appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${touched.roles_detail && errors.roles_detail
+                          ? 'border-red-500' // Example: Add red border on validation error
+                          : ''
                           }`}
                       >
                         <option value="" disabled className="text-body dark:text-bodydark">
                           Select Role
                         </option>
-
-                        {user?.roles?.role.toLowerCase() == "admin" && <option value="1" className="text-body dark:text-bodydark capitalize">
-                          admin
-                        </option>}
-
-                        {user?.roles?.role.toLowerCase() == "admin" && <option value="2" className="text-body dark:text-bodydark capitalize">
-                          manager
-                        </option>}
-
+                        {UserStateData && UserStateData.roles && UserStateData.roles.role == 'Admin' && (
+                          <option value="1" className="text-body dark:text-bodydark capitalize">
+                            admin
+                          </option>
+                        )}
+                        {UserStateData && UserStateData.roles && UserStateData.roles.role == 'Admin' && (
+                          <option value="2" className="text-body dark:text-bodydark capitalize">
+                            manager
+                          </option>
+                        )}
                         <option value="3" className="text-body dark:text-bodydark capitalize">
-                          data operater
+                          data operator
                         </option>
-
                       </select>
+
+                      {touched.roles_detail && errors.roles_detail && (
+                        <p className="text-red-500 text-xs "> <Translatable text={errors.roles_detail} /></p>
+                      )}
 
                       <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
                         <svg
@@ -270,6 +282,16 @@ const { user:UserStateData } = useSelector((state:UserState) => state.auth);
                     </div>
                   </div>}
 
+
+                  <MultiSelect
+                    selectedData={selectPermisionOfUser}
+                    id="multiSelect"
+                    optionsData={[
+                      { title: "View", value: 2 },
+                      { title: "Edit", value: 3 }
+                    ]}
+                    setSelectedPermission={setSelectedPermission}
+                  />
 
                   <div className="mb-5.5">
                     <label

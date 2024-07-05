@@ -10,16 +10,16 @@ import { Link } from "react-router-dom";
 const TableThree: FC = () => {
   const [userData, setUserData] = useState<T.User[]>([]);
   const { data, isLoading, refetch } = useGetAllUsersQuery<any>({});
- 
 
-  useEffect(()=>{refetch()},[])
+
+  useEffect(() => { refetch() }, [])
 
   const [deleteFnc] = useDeleteUserMutation<any>({});
 
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await deleteFnc(id); 
+      const res = await deleteFnc(id);
 
       if (res.error) {
         toast.error("Something Went Wrong");
@@ -37,6 +37,8 @@ const TableThree: FC = () => {
     if (data) {
       setUserData(data);
     }
+    console.log(data);
+
   }, [data]);
 
   if (isLoading) return <Loader />;
@@ -70,8 +72,8 @@ const TableThree: FC = () => {
                   <Translatable text={user?.roles?.role} />
                 </td>
                 <td className="py-5 px-4">
-                  {user.permissions_details?.map((perm: any) => (
-                    <span key={perm.id}>{perm.permission}</span>
+                  {user.permissions?.map((perm: any, i: number) => (
+                    <span key={perm.id}>{perm.permission}  {i !== user.permissions.length - 1 && ","}</span>
                   ))}
                 </td>
                 <td className="capitalize flex items-center gap-2 text-xl py-5 px-4">

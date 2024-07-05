@@ -15,3 +15,4 @@ export { default as Home } from "./Home";
 export { default as CreateExpenses } from "./CreateExpenses";    
 export { default as Expenses } from "./Expenses";    
 export { default as UserDetail } from "./UserDetail";    
+export { default as ExpensesSettings } from "./ExpensesSettings";    

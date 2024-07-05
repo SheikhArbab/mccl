@@ -3,14 +3,14 @@ import { NavLink, useLocation } from 'react-router-dom';
 import SidebarLinkGroup from './SidebarLinkGroup';
 import Translatable from '../Translatable';
 import { MdOutlineDashboard } from "react-icons/md";
-import { FaRegCalendarAlt, FaAngleDown } from "react-icons/fa";
-import { GoGear } from "react-icons/go";
-import { AiOutlineUser } from "react-icons/ai";
-import { FaWpforms } from "react-icons/fa6";
 import { TbTableShare } from "react-icons/tb";
-import { AiOutlinePieChart } from "react-icons/ai";
-import { FaBuromobelexperte } from "react-icons/fa";
-import { GrShieldSecurity } from "react-icons/gr";
+import { GoGear } from "react-icons/go";
+import { FaAngleDown } from "react-icons/fa";
+// import { AiOutlineUser } from "react-icons/ai";
+// import { FaWpforms } from "react-icons/fa6";
+// import { AiOutlinePieChart } from "react-icons/ai";
+// import { FaBuromobelexperte } from "react-icons/fa";
+// import { GrShieldSecurity } from "react-icons/gr";
 
 
 interface SidebarProps {
@@ -114,8 +114,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              <Translatable text='MENU' />
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2 flex items-center gap-2">
+              <Translatable text='MENU' /> / قائمة طعام
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
@@ -143,7 +143,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       >
 
                         <MdOutlineDashboard className="fill-current" />
-                        <Translatable text='Dashboard' />
+                        <Translatable text='Dashboard / لوحة القيادة' />
                         <FaAngleDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'
                           }`} />
                       </NavLink>
@@ -162,7 +162,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              <Translatable text='analytics' />
+                              <Translatable text='analytics / تحليلات' />
 
                             </NavLink>
                           </li>
@@ -276,7 +276,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     }`}
                 >
                   <TbTableShare />
-                  <Translatable text='Expenses' />
+                  <Translatable text='Expenses / نفقات' />
                 </NavLink>
               </li>
               <li>
@@ -286,7 +286,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     }`}
                 >
                   <TbTableShare />
-                  <Translatable text='Tables' />
+                  <Translatable text='Tables / الجداول' />
                 </NavLink>
               </li>
               {/* <!-- Menu Item Tables --> */}
@@ -300,7 +300,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     }`}
                 >
                   <GoGear />
-                  <Translatable text='Settings' />
+                  <Translatable text='Settings / إعدادات' />
                 </NavLink>
               </li>
               {/* <!-- Menu Item Settings --> */}

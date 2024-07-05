@@ -22,11 +22,12 @@ export const expensesApi = createApi({
                 url: 'expenses/create/',
                 method: 'POST',
                 body: data,
+            
             }),
         }),
         getExpensesById: builder.query({
             query: (id) => ({
-                url: `admin/get/${id}`,
+                url: `expenses/detail/${id}/`,
                 method: 'GET'
             }),
         }),
@@ -60,10 +61,10 @@ export const expensesApi = createApi({
         }),
 
         updateExpenses: builder.mutation({
-            query: ({ userId, updateData }) => ({
-                url: `user/${userId}/`,
-                method: 'PATCH',
-                body: updateData,
+            query: ({ id, data }) => ({
+                url: `expenses/update/${id}/`,
+                method: 'PUT',
+                body: data,
             }),
         }),
         deleteExpenses: builder.mutation({
