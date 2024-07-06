@@ -6,6 +6,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { TbTableShare } from "react-icons/tb";
 import { GoGear } from "react-icons/go";
 import { FaAngleDown } from "react-icons/fa";
+import { FaUsers } from 'react-icons/fa6';
 // import { AiOutlineUser } from "react-icons/ai";
 // import { FaWpforms } from "react-icons/fa6";
 // import { AiOutlinePieChart } from "react-icons/ai";
@@ -281,12 +282,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
               <li>
                 <NavLink
-                  to="/tables"
+                  to="/users"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('tables') && 'bg-graydark dark:bg-meta-4'
                     }`}
                 >
-                  <TbTableShare />
-                  <Translatable text='Tables / الجداول' />
+                  <FaUsers />
+                  <Translatable text='Users / المستخدمين' />
                 </NavLink>
               </li>
               {/* <!-- Menu Item Tables --> */}

@@ -83,7 +83,7 @@ const ExpensesSettings: FC = () => {
 
                 if (res.error) toast.error("Something Went Wrong!");
                 if (res.data) {
-                    toast.success("Expenses Added Successfully")
+                    toast.success("Expenses Updated Successfully")
                     refetch()
                 };
             } catch (error) {

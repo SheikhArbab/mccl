@@ -61,6 +61,11 @@ export const authenticate: RouteItem[] = [
         element: P.Tables
     },
     {
+        path: "/users",
+        title: "Users | Metal Collection .Co LTD",
+        element: P.Users
+    },
+    {
         path: "/settings",
         title: "Settings | Metal Collection .Co LTD",
         element: P.Settings
