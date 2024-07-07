@@ -7,9 +7,9 @@ import { useUpdateUserMutation } from '@/redux/services/auth';
 import { currentUser } from '@/redux/features/authSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { UserState } from '@/types/User';
-import { useState } from 'react';
+import { FC } from 'react';
 
-const Settings = () => {
+const Settings:FC = () => {
 
 
   const dispatch = useDispatch();
@@ -17,9 +17,7 @@ const Settings = () => {
   const { user, token } = useSelector((state: UserState) => state.auth);
 
   const [updatedUser, { isLoading }] = useUpdateUserMutation()
-
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
+ 
 
 
   const { handleChange, handleSubmit, handleBlur, touched, errors, values, } = useFormik({

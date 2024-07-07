@@ -7,6 +7,8 @@ import { TbTableShare } from "react-icons/tb";
 import { GoGear } from "react-icons/go";
 import { FaAngleDown } from "react-icons/fa";
 import { FaUsers } from 'react-icons/fa6';
+import { useSelector } from 'react-redux';
+import { UserState } from '@/types/User';
 // import { AiOutlineUser } from "react-icons/ai";
 // import { FaWpforms } from "react-icons/fa6";
 // import { AiOutlinePieChart } from "react-icons/ai";
@@ -21,6 +23,8 @@ interface SidebarProps {
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
+
+  const { user } = useSelector((state: UserState) => state.auth);
 
 
   const location = useLocation();
@@ -280,16 +284,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   <Translatable text='Expenses / نفقات' />
                 </NavLink>
               </li>
-              <li>
+              {user && user?.roles && (user.roles.role == "Admin" || user && user?.roles && user.roles.role == "Manager") && <li>
                 <NavLink
                   to="/users"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('tables') && 'bg-graydark dark:bg-meta-4'
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('users') && 'bg-graydark dark:bg-meta-4'
                     }`}
                 >
                   <FaUsers />
                   <Translatable text='Users / المستخدمين' />
                 </NavLink>
-              </li>
+              </li>}
               {/* <!-- Menu Item Tables --> */}
 
               {/* <!-- Menu Item Settings --> */}

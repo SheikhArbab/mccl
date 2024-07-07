@@ -40,6 +40,15 @@ const TableOne = () => {
     if (data) {
       setExpensesData(data);
     }
+    if(false){
+      setFilters({
+        date: "",
+        paidTo: "",
+        amount: "",
+        chequeNo: "",
+        bank: "",
+      })
+    }
   }, [data]);
 
   const handleExpensesDelete = async (id: number) => {

@@ -309,14 +309,7 @@ const SignIn: React.FC = () => {
                    <Translatable text='Sign in with Google' />
                 </button> */}
 
-                <div className="mt-6 text-center">
-                  <p>
-                    <Translatable text='Don’t have any account?' />{' '}
-                    <Link to="/auth/signup" className="text-primary">
-                      <Translatable text='Sign Up' />
-                    </Link>
-                  </p>
-                </div>
+           
               </form>
             </div>
           </div>

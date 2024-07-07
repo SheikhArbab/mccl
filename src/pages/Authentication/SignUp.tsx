@@ -18,8 +18,7 @@ const SignUp: React.FC = () => {
       email: "",
       password: "",
       first_name: "",
-      last_name: "",
-      roles_detail:3
+      last_name: ""
     },
 
     validationSchema: Yup.object({
@@ -39,7 +38,10 @@ const SignUp: React.FC = () => {
 
       try {
 
-        const res: any = await data({ ...formValues, roles: 2 }) 
+        const res: any = await data({
+          ...formValues, permissions_detail: [],
+          roles_detail: { "id": 3 }
+        })
 
         if (res.error) toast.error("Something Went Wrong !")
 

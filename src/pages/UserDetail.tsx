@@ -48,13 +48,13 @@ const UserDetail = () => {
       try {
         const res = await updatedUser({ userId: user?.id, updateData: { permissions_detail: selectedPermission, ...rest } });
 
-        if (res.error) {
-          toast.error('Something went wrong!');
-        }
-
+ 
         if (res.data) {
           toast.success('User updated successfully');
           refetch()
+        }else{
+          
+          toast.error('Something went wrong!');
         }
       } catch (error) {
         toast.error(`Something went wrong! ${error}`);
@@ -461,7 +461,7 @@ const UserDetail = () => {
               </div>
             </div>
           </div> */}
-          <Toaster />
+    <Toaster /> 
         </div>
       </div>
     </>

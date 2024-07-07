@@ -170,7 +170,7 @@ const FormElements = () => {
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <C.SelectGroupTwo />
-              <C.MultiSelect id="multiSelect" />
+              {/* <C.MultiSelect id="multiSelect" /> */}
             </div>
           </div>
         </div>
