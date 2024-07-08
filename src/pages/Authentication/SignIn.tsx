@@ -225,7 +225,7 @@ const SignIn: React.FC = () => {
               <form onSubmit={handleSubmit} >
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    <Translatable text='Email' />
+                    <Translatable text='Email / بريد إلكتروني' />
                   </label>
                   <div className="relative">
                     <input
@@ -247,7 +247,7 @@ const SignIn: React.FC = () => {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    <Translatable text='Password' />
+                    <Translatable text='Password / كلمة المرور' />
                   </label>
                   <div className="relative">
                     <input
@@ -269,7 +269,7 @@ const SignIn: React.FC = () => {
 
                 <button disabled={isLoading} type='submit' className="mb-5 w-full cursor-pointer flex items-center justify-center rounded-lg border border-primary
                      bg-primary p-4 text-white transition hover:bg-opacity-90">
-                  {isLoading ? <Spinner size='6' /> : <Translatable text='Sign In' />}
+                  {isLoading ? <Spinner size='6' /> : <Translatable text='Sign In / تسجيل الدخول' />}
                 </button>
 
                 {/* <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">

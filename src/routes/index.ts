@@ -61,19 +61,9 @@ export const authenticate: RouteItem[] = [
         element: P.Tables
     },
     {
-        path: "/users",
-        title: "Users | Metal Collection .Co LTD",
-        element: P.Users
-    },
-    {
         path: "/settings",
         title: "Settings | Metal Collection .Co LTD",
         element: P.Settings
-    },
-    {
-        path: "/user-settings/:id",
-        title: "Settings | Metal Collection .Co LTD",
-        element: P.UserDetail
     },
     {
         path: "/expenses-settings/:id",
@@ -99,6 +89,22 @@ export const authenticate: RouteItem[] = [
         path: "/auth/signup",
         title: "Signup | Metal Collection .Co LTD",
         element: P.SignUp
+    },
+
+]
+
+
+export const authorized: RouteItem[] = [
+
+    {
+        path: "/users",
+        title: "Users | Metal Collection .Co LTD",
+        element: P.Users
+    },
+    {
+        path: "/user-settings/:id",
+        title: "Settings | Metal Collection .Co LTD",
+        element: P.UserDetail
     },
 
 ]

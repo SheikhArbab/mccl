@@ -199,7 +199,7 @@ const SignUp: React.FC = () => {
 
           <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
-              <span className="mb-1.5 block font-medium">Start for free</span>
+              <span className="mb-1.5 block font-medium">Start for free / ابدأ مجانًا</span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Sign Up to Metal Collection .Co LTD
               </h2>
@@ -208,7 +208,7 @@ const SignUp: React.FC = () => {
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    First Name
+                  First Name / الاسم الأول
                   </label>
                   <div className="relative">
                     <input onChange={handleChange} onBlur={handleBlur} value={values.first_name}
@@ -233,7 +233,7 @@ const SignUp: React.FC = () => {
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Last Name
+                  Last Name / اسم العائلة
                   </label>
                   <div className="relative">
                     <input onChange={handleChange} onBlur={handleBlur} value={values.last_name}
@@ -258,7 +258,7 @@ const SignUp: React.FC = () => {
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    <Translatable text='Email' />
+                    <Translatable text='Email / بريد إلكتروني' />
                   </label>
                   <div className="relative">
                     <input
@@ -280,7 +280,7 @@ const SignUp: React.FC = () => {
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Password
+                  Password / كلمة المرور
                   </label>
                   <div className="relative">
                     <input onChange={handleChange} onBlur={handleBlur} value={values.password}
@@ -308,7 +308,7 @@ const SignUp: React.FC = () => {
 
                 <button disabled={isLoading} type='submit' className="mb-5 w-full cursor-pointer flex items-center justify-center rounded-lg border border-primary
                      bg-primary p-4 text-white transition hover:bg-opacity-90">
-                  {isLoading ? <Spinner size='6' /> : <Translatable text='Submit' />}
+                  {isLoading ? <Spinner size='6' /> : <Translatable text='Submit / يُقدِّم' />}
                 </button>
 
 

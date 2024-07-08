@@ -4,7 +4,7 @@ import * as L from "@/layout/index";
 import * as P from "@/pages/index";
 import { Route } from 'react-router-dom';
 import { PageTitle } from '@/components/index';
-import { routes, authenticate } from "./index";
+import { routes, authenticate, authorized } from "./index";
 import Loader from "@/common/Loader";
 
 const Routing = () => {
@@ -35,6 +35,17 @@ const Routing = () => {
                         } />)}
                 </R.Route>
                 {/* PrivateRoutes  end*/}
+
+                {/* Authorized start*/}
+                <R.Route path='/' element={<L.Authorized roles={["Admin", "Manager"]} />}>
+                    {authorized.length > 0 && authorized.map((v, i) => <R.Route
+                        key={i} path={v.path} element={
+                            <Suspense fallback={<Loader />}>
+                                <v.element />
+                            </Suspense>
+                        } />)}
+                </R.Route>
+                {/* Authorized  end*/}
 
 
                 {/* Logout start*/}
