@@ -34,7 +34,7 @@ const FileUpload: FC<FileUploadProps> = ({ onFilesChange }) => {
                         Drag & Drop or Choose File to Upload / قم بالسحب والإسقاط أو اختيار ملف للتحميل
                     </p>
                     <p className="text-body-4 font-normal text-metal-400 dark:text-metal-300">
-                        DOCX, XLSX, PPTX, PDF, and JPG formats, up to 50 MB.
+                        DOCX, XLSX, PPTX, PDF, and JPG formats.
                     </p>
                 </UploadText>
             </UploadBody>

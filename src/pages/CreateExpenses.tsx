@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNewExpensesMutation } from '@/redux/services/expenses';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 const CreateExpenses: FC = () => {
   const [data, { isLoading }] = useNewExpensesMutation();
@@ -319,21 +321,48 @@ const CreateExpenses: FC = () => {
 
               </div>
 
-              <div className="w-full md:w-[40rem] sticky top-24 h-fit">
+              <div className="w-full md:w-[40rem] sticky top-24 h-fit  ">
 
-                {/* Display uploaded images */}
-                {uploadedFiles.length > 0 && (
-                  <div className="flex  overflow-x-auto gap-4">
-                    {uploadedFiles.map((file, index) => (
-                      <img
-                        key={index}
-                        src={URL.createObjectURL(file)}
-                        alt={`Uploaded file ${index}`}
-                        className="max-w-full h-auto object-contain"
-                      />
-                    ))}
-                  </div>
-                )}
+                <div className='w-full flex items-center overflow-x-scroll bg-black gap-4 px-2 h-96'>
+                  {uploadedFiles.length > 0 ? (
+                    <div className='flex items-center gap-3 overflow-x-auto'>
+                      {uploadedFiles.map((file, index) => {
+                        if (file.type.startsWith('image/')) {
+                          return (
+                            <Zoom key={index}>
+                              <img
+                                src={URL.createObjectURL(file)}
+                                alt={`Uploaded file ${index}`}
+                                className={'w-full h-auto object-contain cursor-pointer'}
+                              />
+                            </Zoom>
+
+                          );
+                        } else if (file.type === 'application/pdf') {
+                          return (
+                            <embed
+                              key={index}
+                              src={URL.createObjectURL(file)}
+                              type="application/pdf"
+                              className="flex-1 h-full object-contain"
+                            />
+                          );
+                        } else {
+                          return (
+                            <p className='' key={index}>
+                              Unsupported file type: {file.name}
+                            </p>
+                          );
+                        }
+                      })}
+                    </div>
+                  ) : (
+                    <img src="/preview.webp" className="w-full h-full object-cover" />
+                  )}
+
+
+                </div>
+
                 <FileUpload onFilesChange={handleFilesChange} />
               </div>
 
