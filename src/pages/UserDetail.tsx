@@ -30,7 +30,7 @@ const UserDetail = () => {
     initialValues: {
       first_name: user?.first_name || '',
       last_name: user?.last_name || '',
-      roles_detail: (user && user.roles && user?.roles?.id) || 3,
+      roles_detail: (user && user.roles && user?.roles?.id) || "",
       permissions_detail: (user && user.permissions && user.permissions.length > 0)
         ? user.permissions.map((permission: any) => permission.id)
         : [],

@@ -19,6 +19,7 @@ const TableThree: FC = () => {
 
 
   const { user } = useSelector((state: T.UserState) => state.auth);
+ 
 
   const handleDelete = async (id: string) => {
     try {
@@ -62,39 +63,49 @@ const TableThree: FC = () => {
                 </th>
               ))}
 
-              {user && (user?.roles && user?.roles.role == "Admin" || user?.roles && user?.roles.role == "Manager") && <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11 capitalize">
+              {user && (user.roles.role == "Admin" || user.roles.role == "Manager") && <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11 capitalize">
                 <Translatable text={"action"} />
               </th>}
 
             </tr>
           </thead>
+
+
           <tbody className="">
-            {userData.map((user: any) => (
-              user.is_active ? <tr key={user.id} className="border-b border-[#eee] dark:border-strokedark">
-                {["first_name", "last_name", "email"].map((key: string) => (
-                  <td key={key} className="py-5 px-4">
-                    <Translatable text={user[key]} />
-                  </td>
-                ))}
-                <td className="py-5 px-4">
-                  <Translatable text={user?.roles?.role} />
-                </td>
-                <td className="py-5 px-4">
-                  {user.permissions?.map((perm: any, i: number) => (
-                    <span key={perm.id}>{perm.permission}  {i !== user.permissions.length - 1 && ","}</span>
+            {userData.map((v: any) => (
+              v.is_active ? (
+                <tr key={v.id} className="border-b border-[#eee] dark:border-strokedark">
+                  {["first_name", "last_name", "email"].map((key: string) => (
+                    <td key={`${v.id}-${key}`} className="py-5 px-4">
+                      <Translatable text={v[key]} />
+                    </td>
                   ))}
-                </td>
-                {user && (user?.roles && user?.roles.role == "Admin" || user?.roles && user?.roles.role == "Manager") && <td className="capitalize flex items-center gap-2 text-xl py-5 px-4">
-                  <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
-                    <Modal deleteFnc={() => handleDelete(user.id)} />
-                  </button>
-                  <Link to={`/user-settings/${user.id}`} className="dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
-                    <MdEdit />
-                  </Link>
-                </td>}
-              </tr> : null
+                  <td className="py-5 px-4">
+                    <Translatable text={v?.roles?.role || 'N/A'} />
+                  </td>
+                  <td className="py-5 px-4">
+                    {v.permissions?.map((perm: any, i: number) => (
+                      <span key={perm.id}>
+                        {perm.permission} {i !== v.permissions.length - 1 && ","}
+                      </span>
+                    ))}
+                  </td>
+                  {(user?.roles?.role === "Admin" || user?.roles?.role === "Manager") && (
+                    <td className="capitalize flex items-center gap-2 text-xl py-5 px-4">
+                      <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                        <Modal deleteFnc={() => handleDelete(v.id)} />
+                      </button>
+                      <Link to={`/user-settings/${v.id}`} className="dark:text-white text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                        <MdEdit />
+                      </Link>
+                    </td>
+                  )}
+                </tr>
+              ) : null
             ))}
           </tbody>
+
+
 
         </table>
         <Toaster />

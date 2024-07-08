@@ -39,8 +39,8 @@ const SignUp: React.FC = () => {
       try {
 
         const res: any = await data({
-          ...formValues, permissions_detail: [],
-          roles_detail: { "id": 3 }
+          ...formValues, permissions_detail: [1],
+          roles_detail: 3
         })
 
         if (res.error) toast.error("Something Went Wrong !")
