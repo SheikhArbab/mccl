@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { MdEdit } from "react-icons/md";
 import Loader from '@/common/Loader';
 import { Translatable, Modal, Breadcrumb } from "@/components/index";
@@ -6,29 +6,23 @@ import { useGetAllExpensesQuery, useDeleteExpensesMutation } from '@/redux/servi
 import * as T from "@/types/expenses";
 import toast, { Toaster } from 'react-hot-toast';
 import { HiOutlineDownload } from "react-icons/hi";
-import { Link } from "react-router-dom"; 
-
-
+import { Link } from "react-router-dom";
+import { CSVLink } from 'react-csv';
 
 const Expenses = () => {
     const [expensesData, setExpensesData] = useState<T.Expense[]>([]);
-
-    const query = {
+    const [filters, setFilters] = useState({
         date: "",
         paidTo: "",
         amount: "",
         chequeNo: "",
         bank: "",
-        // forWhat: "",
         invoiceNumber: "",
         dueDate: "",
-        // taxAmount: "",
         supplier: "",
-        // sumOfSr: "",
-        // currency: "",
-    }
+    });
 
-    const [filters, setFilters] = useState(query);
+    const csvLink:any = useRef<CSVLink>(null);
 
     const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -38,16 +32,12 @@ const Expenses = () => {
         }));
     };
 
-
     const { data, isLoading, refetch } = useGetAllExpensesQuery<any>(filters);
-
     const [deleteFnc] = useDeleteExpensesMutation<any>({});
 
     useEffect(() => {
         refetch();
     }, [filters]);
-
-
 
     useEffect(() => {
         if (data) {
@@ -65,16 +55,10 @@ const Expenses = () => {
                 toast.success("Expenses deleted successfully");
                 refetch();
             }
-
         } catch (error: any) {
             toast.error(`Something Went Wrong ${error.message}`);
         }
     };
-
-    if (isLoading) return <Loader />;
-
-
-
 
     const tableHeaders = [
         { key: "id", label: "ID", width: "100px" },
@@ -93,44 +77,32 @@ const Expenses = () => {
         { key: "actions", label: "Actions", width: "100px" },
     ];
 
+    const handleExportCsv = () => {
+        if (csvLink.current) {
+            csvLink.current.link.click();
+        }
+    };
 
- 
-
-
- 
-
+    if (isLoading) return <Loader />;
 
     return (
         <>
-
-
-            <div className="border-0 ">
+            <div className="border-0">
                 <Breadcrumb pageName="Expenses" />
             </div>
 
-
             <div className="flex flex-wrap gap-6 items-center justify-between mb-2">
-                <Link to={"/add-expenses"}
-                    className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg md:text-sm  
-          px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs ">
+                <Link to={"/add-expenses"} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg md:text-sm px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs">
                     <Translatable text='add a new expenses / إضافة نفقات جديدة' />
                 </Link>
 
-
-                <button 
-
-                    className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg   md:text-sm
-          px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs gap-2 ">
+                <button onClick={handleExportCsv} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg md:text-sm px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs gap-2">
                     <Translatable text='Export / يصدّر' /> <HiOutlineDownload size={18} />
                 </button>
-
-
-
             </div>
+
             <div className="flex flex-wrap items-center gap-5 py-4">
-
-
-                <div className="flex flex-wrap gap-4 ">
+                <div className="flex flex-wrap gap-4">
                     {Object.keys(filters).map(key => (
                         <input
                             key={key}
@@ -143,62 +115,60 @@ const Expenses = () => {
                         />
                     ))}
                 </div>
-
-
-
             </div>
 
+            {expensesData.length > 0 ? (
+                <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+                    <CSVLink
+                        ref={csvLink}
+                        data={expensesData}
+                        headers={tableHeaders}
+                        filename={"expenses.csv"}
+                        className="hidden"
+                    />
 
-            {expensesData.length > 0 ? <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-
-
-
-
-                <div className="max-w-full overflow-x-auto">
-
-
-
-                    <table className="w-full table-auto">
-                        <thead>
-                            <tr className="bg-gray-200 text-left dark:bg-meta-4">
-                                {tableHeaders.map((header) => (
-                                    <th key={header.key} className={`min-w-[${header.width}] py-4 px-4 font-medium text-black dark:text-white xl:pl-11  w-fit text-nowrap`}>
-                                        <Translatable text={header.label} />
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {expensesData.map((expense: T.Expense) => (
-                                <tr key={expense.id} className="border-b border-gray-300 dark:border-strokedark w-full">
+                    <div className="max-w-full overflow-x-auto">
+                        <table className="w-full table-auto">
+                            <thead>
+                                <tr className="bg-gray-200 text-left dark:bg-meta-4">
                                     {tableHeaders.map((header) => (
-                                        <td key={header.key} className="py-3 px-4">
-                                            {header.key === "actions" ? (
-                                                <div className="flex items-center gap-2">
-                                                    <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
-                                                        <Modal deleteFnc={() => handleExpensesDelete(expense.id)} />
-                                                    </button>
-                                                    <Link to={`/expenses-settings/${expense.id}`} className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
-                                                        <MdEdit />
-                                                    </Link>
-                                                </div>
-                                            ) : (
-                                                <Translatable text={expense[header.key as keyof T.Expense]} />
-                                            )}
-                                        </td>
+                                        <th key={header.key} className={`min-w-[${header.width}] py-4 px-4 font-medium text-black dark:text-white xl:pl-11 w-fit text-nowrap`}>
+                                            <Translatable text={header.label} />
+                                        </th>
                                     ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <Toaster />
+                            </thead>
+                            <tbody>
+                                {expensesData.map((expense: T.Expense) => (
+                                    <tr key={expense.id} className="border-b border-gray-300 dark:border-strokedark w-full">
+                                        {tableHeaders.map((header) => (
+                                            <td key={header.key} className="py-3 px-4">
+                                                {header.key === "actions" ? (
+                                                    <div className="flex items-center gap-2">
+                                                        <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                                                            <Modal deleteFnc={() => handleExpensesDelete(expense.id)} />
+                                                        </button>
+                                                        <Link to={`/expenses-settings/${expense.id}`} className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                                                            <MdEdit />
+                                                        </Link>
+                                                    </div>
+                                                ) : (
+                                                    <Translatable text={expense[header.key as keyof T.Expense]} />
+                                                )}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <Toaster />
+                    </div>
                 </div>
-            </div> : <h1 className='text-center capitalize'>No expenses data available</h1>}
-
-
+            ) : (
+                <h1 className='text-center capitalize'>No expenses data available</h1>
+            )}
         </>
     );
 };
 
-
-export default Expenses
+export default Expenses;
