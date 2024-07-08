@@ -5,18 +5,19 @@ import { Link } from 'react-router-dom'
 const Home: FC = () => {
     return (
 
-        <section className="bg-white dark:bg-graydark w-full min-h-screen flex items-center ">
-            <div className="flex items-center justify-between px-4 py-8 w-full  ">
+        <section className=" w-screen min-h-screen absolute inset-0 top-16 bg-[url('/bg.jpg')]">
+            <div className="flex items-center justify-between  glass  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+             w-[90%] h-[84%] rounded-2xl border-4 border-white shadow-lg shadow-white px-8 md:px-20">
                 <div className=" ">
-                    <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-                        <Translatable text={`Architects Of Tomorrow's Digital Frontier`} />
+                    <h1 className="max-w-4xl mb-4 text-3xl font-extrabold   md:text-5xl xl:text-6xl  text-white " >
+                        Metal Collection Co. Ltd
                     </h1>
-                    <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-                        <Translatable text={`We help Start-Ups, SMEs and Enterprises grow their business with embedded engineers and outsourced software development.`} />
+                    <p className="max-w-2xl mb-6 font-light lg:mb-8 md:text-lg lg:text-sm  text-gray-200">
+                        <Translatable text={`The Metal Collection Company is an extension of Mr. Salem Ali Abdullah Al-Qadri Al-Harthy Establishment for Iron and Scrap Trading, which was established in 1418 Hijri in the Jeddah Governorate as a sole proprietorship under Commercial Registration No. (4030147981)..`} />
                     </p>
                     <Link
                         to="/auth/signin"
-                        className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                        className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 border"
                     >
                         <Translatable text='Login' />
                         <svg
@@ -33,12 +34,15 @@ const Home: FC = () => {
                         </svg>
                     </Link>
                 </div>
-                <div className="hidden lg:flex items-center justify-center  ">
-                    <img
-                        className='w-full h-full object-contain'
-                        src="/csv.png "
-                        alt="mockup"
-                    />
+                <div className="hidden lg:flex items-center justify-center ">
+
+                    <figure className=' w-80  '>
+                        <img
+                            className='w-full h-full object-contain drop-shadow-2xl'
+                            src="/logo/w.png "
+                            alt="mockup"
+                        />
+                    </figure>
                 </div>
             </div>
         </section>

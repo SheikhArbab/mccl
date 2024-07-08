@@ -13,7 +13,7 @@ export const routes: RouteItem[] = [
 
     {
         path: "*",
-        title: "Oops page not found! | Metal Collection .Co LTD",
+        title: "Oops page not found! | Metal Collection Co. LTD",
         element: P.NotFound
     }
 ];
@@ -22,72 +22,72 @@ export const routes: RouteItem[] = [
 export const authenticate: RouteItem[] = [
     {
         path: "/expenses",
-        title: "Dashboard | Metal Collection .Co LTD",
+        title: "Dashboard | Metal Collection Co. LTD",
         element: P.Expenses
     },
     {
         path: "/add-expenses",
-        title: "Dashboard | Metal Collection .Co LTD",
+        title: "Dashboard | Metal Collection Co. LTD",
         element: P.CreateExpenses
     },
     {
         path: "/dashboard",
-        title: "Dashboard | Metal Collection .Co LTD",
+        title: "Dashboard | Metal Collection Co. LTD",
         element: P.ECommerce
     },
     {
         path: "/calendar",
-        title: "Calendar | Metal Collection .Co LTD",
+        title: "Calendar | Metal Collection Co. LTD",
         element: P.Calendar
     },
     {
         path: "/profile",
-        title: "Profile | Metal Collection .Co LTD",
+        title: "Profile | Metal Collection Co. LTD",
         element: P.Profile
     },
     {
         path: "/forms/form-elements",
-        title: "Form Elements | Metal Collection .Co LTD",
+        title: "Form Elements | Metal Collection Co. LTD",
         element: P.FormElements
     },
     {
         path: "/forms/form-layout",
-        title: "Form Layout | Metal Collection .Co LTD",
+        title: "Form Layout | Metal Collection Co. LTD",
         element: P.FormLayout
     },
     {
         path: "/tables",
-        title: "Tables | Metal Collection .Co LTD",
+        title: "Tables | Metal Collection Co. LTD",
         element: P.Tables
     },
     {
         path: "/settings",
-        title: "Settings | Metal Collection .Co LTD",
+        title: "Settings | Metal Collection Co. LTD",
         element: P.Settings
     },
     {
         path: "/expenses-settings/:id",
-        title: "Settings | Metal Collection .Co LTD",
+        title: "Settings | Metal Collection Co. LTD",
         element: P.ExpensesSettings
     },
     {
         path: "/chart",
-        title: "Basic Chart | Metal Collection .Co LTD",
+        title: "Basic Chart | Metal Collection Co. LTD",
         element: P.Chart
     },
     {
         path: "/ui/alerts",
-        title: "Alerts | Metal Collection .Co LTD",
+        title: "Alerts | Metal Collection Co. LTD",
         element: P.Alerts
     },
     {
         path: "/ui/buttons",
-        title: "Buttons | Metal Collection .Co LTD",
+        title: "Buttons | Metal Collection Co. LTD",
         element: P.Buttons
     },
     {
         path: "/auth/signup",
-        title: "Signup | Metal Collection .Co LTD",
+        title: "Signup | Metal Collection Co. LTD",
         element: P.SignUp
     },
 
@@ -98,12 +98,12 @@ export const authorized: RouteItem[] = [
 
     {
         path: "/users",
-        title: "Users | Metal Collection .Co LTD",
+        title: "Users | Metal Collection Co. LTD",
         element: P.Users
     },
     {
         path: "/user-settings/:id",
-        title: "Settings | Metal Collection .Co LTD",
+        title: "Settings | Metal Collection Co. LTD",
         element: P.UserDetail
     },
 

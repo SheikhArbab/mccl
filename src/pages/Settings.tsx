@@ -233,8 +233,8 @@ const Settings:FC = () => {
                         type="email"
                         name="email"
                         id="email"
-                        placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        placeholder="devidjond45@gmailCo.m"
+                        defaultValue="devidjond45@gmailCo.m"
                       />
                     </div>
                     {touched.email && errors.email && (

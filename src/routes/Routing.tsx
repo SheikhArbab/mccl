@@ -51,7 +51,7 @@ const Routing = () => {
                 {/* Logout start*/}
                 <R.Route path='/' element={<L.LogOut />}>
                     <Route index element={<> <PageTitle
-                        title="Metal Collection .Co LTD" />
+                        title="Metal Collection Co. LTD" />
                         <P.Home /> </>} />
                     <R.Route path='/auth/signin' element={<P.SignIn />} />
                 </R.Route>

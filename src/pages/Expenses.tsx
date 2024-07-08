@@ -5,7 +5,10 @@ import { Translatable, Modal, Breadcrumb } from "@/components/index";
 import { useGetAllExpensesQuery, useDeleteExpensesMutation } from '@/redux/services/expenses';
 import * as T from "@/types/expenses";
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import { HiOutlineDownload } from "react-icons/hi";
+import { Link } from "react-router-dom"; 
+
+
 
 const Expenses = () => {
     const [expensesData, setExpensesData] = useState<T.Expense[]>([]);
@@ -91,6 +94,11 @@ const Expenses = () => {
     ];
 
 
+ 
+
+
+ 
+
 
     return (
         <>
@@ -101,13 +109,26 @@ const Expenses = () => {
             </div>
 
 
-            <div className="flex flex-wrap items-center gap-5 py-4">
-
+            <div className="flex flex-wrap gap-6 items-center justify-between mb-2">
                 <Link to={"/add-expenses"}
-                    className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg  
+                    className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg md:text-sm  
           px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs ">
                     <Translatable text='add a new expenses / إضافة نفقات جديدة' />
                 </Link>
+
+
+                <button 
+
+                    className="text-white bg-blue-700 hover:bg-blue-800  focus:outline-none   font-medium rounded-lg   md:text-sm
+          px-2 w-fit text-nowrap py-2 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 capitalize text-xs gap-2 ">
+                    <Translatable text='Export / يصدّر' /> <HiOutlineDownload size={18} />
+                </button>
+
+
+
+            </div>
+            <div className="flex flex-wrap items-center gap-5 py-4">
+
 
                 <div className="flex flex-wrap gap-4 ">
                     {Object.keys(filters).map(key => (
@@ -118,7 +139,7 @@ const Expenses = () => {
                             placeholder={key}
                             value={filters[key as keyof typeof filters]}
                             onChange={handleFilterChange}
-                            className="w-32 rounded border-[1.5px] text-xs border-stroke bg-transparent py-2 px-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            className="w-32 rounded border-[1.5px] text-xs border-blue-900 bg-transparent py-2 px-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                         />
                     ))}
                 </div>

@@ -17,6 +17,7 @@ const ExpensesSettings: FC = () => {
 
 
 
+
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
     const { handleChange, handleSubmit, handleBlur, touched, errors, values, setFieldValue } = useFormik({
@@ -330,7 +331,7 @@ const ExpensesSettings: FC = () => {
 
 
                                 <button type="submit" className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                                    {isLoading ? <Spinner size='6' /> : <Translatable text='Submit' />}
+                                    {isLoading ? <Spinner size='6' /> : <Translatable text='Save / يحفظ' />}
                                 </button>
 
                             </div>
