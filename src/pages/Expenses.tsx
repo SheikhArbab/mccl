@@ -8,6 +8,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { HiOutlineDownload } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { CSVLink } from 'react-csv';
+import { useSelector } from "react-redux";
+import { UserState } from "@/types/User";
 
 const Expenses = () => {
     const [expensesData, setExpensesData] = useState<T.Expense[]>([]);
@@ -22,7 +24,13 @@ const Expenses = () => {
         supplier: "",
     });
 
-    const csvLink:any = useRef<CSVLink>(null);
+
+const {user}  =useSelector((state:UserState) => state.auth)
+
+console.log(user);
+
+
+    const csvLink: any = useRef<CSVLink>(null);
 
     const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -145,10 +153,10 @@ const Expenses = () => {
                                             <td key={header.key} className="py-3 px-4">
                                                 {header.key === "actions" ? (
                                                     <div className="flex items-center gap-2">
-                                                        <button className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                                                        <button disabled={user?.roles.role == "Data Operator"} className="text-black hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                                                             <Modal deleteFnc={() => handleExpensesDelete(expense.id)} />
                                                         </button>
-                                                        <Link to={`/expenses-settings/${expense.id}`} className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
+                                                        <Link to={ user?.roles.role == "Data Operator" ? "" :  `/expenses-settings/${expense.id}`} className="text-black dark:text-white hover:opacity-80 rounded-full w-8 h-8 hover:bg-black/20 flex items-center justify-center">
                                                             <MdEdit />
                                                         </Link>
                                                     </div>
